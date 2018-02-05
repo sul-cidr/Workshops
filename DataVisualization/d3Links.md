@@ -1,5 +1,11 @@
 # Introduction to Interactive Data Visualization with D3.js
 
+This workshop will introduce the D3.js data visualization library. We will cover the basics of how to use this library to create dynamic, interactive data visualizations. Topics will include data joins, selections, animated transitions, and how to create visualizations like bar charts, pie charts, time series, and others. Attendees are encouraged, in preparation for the workshop, to browse and read some of the [introduction and tutorials](https://github.com/d3/d3/wiki).
+
+Because this is a hands-on workshop, attendees should bring a computer with a web browser. No additional software needs to be installed.
+
+This workshop is offered by Stanford Libraries' Center for Interdisciplinary Research as part of its mission to provide training in technical academic research practices and applied research methods.
+
 ## Fundamentals of HTML, CSS, and D3.js
 
 * ["D3.js Fundamentals"](http://alignedleft.com/tutorials/d3/fundamentals
