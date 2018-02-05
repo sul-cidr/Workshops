@@ -24,6 +24,12 @@
 ## Making a Bar Chart
 
 * ["Let's Make a Bar Chart"](https://bost.ocks.org/mike/bar/)
+* [Exercise One: Select the Chart](https://jsfiddle.net/mwidner/L86k12ew/)
+* [Exercise Two: Bind the Data](https://jsfiddle.net/mwidner/48nggje5/)
+* [Exercise Three: Update the Chart](https://jsfiddle.net/mwidner/6fk5n3oa/)
+* [Exercise Four: Size the Bars](https://jsfiddle.net/mwidner/qbw2orn3/)
+* [Exercise Five: Label the Bars](https://jsfiddle.net/mwidner/jvLaoq5t/)
+* [Complete Solution](https://jsfiddle.net/mwidner/50k6uajc/)
 
 * ["Let's Make a Bar Chart: II"](https://bost.ocks.org/mike/bar/2/)
 
