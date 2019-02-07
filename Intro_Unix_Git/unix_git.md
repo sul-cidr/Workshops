@@ -9,7 +9,7 @@
 
 
 ## Unix
-Commands (not in order yet)
+### Commands to cover (not in order yet)
 ```vi```
 (plus commands within)
 
