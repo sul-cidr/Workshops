@@ -51,25 +51,36 @@ TAB completion
 - Addresses issue of multiple versions and drafts of files
 - Provides capacity to easily move between different versions of files (a la Google Sheets, but locally)
 - Facilitates collaboration
-- Facilitates backup and storage through remote repositories
+- Facilitates backup and storage through remote repositories/hosting
+- Lets us work within a community standard technology/framework
 
 ### Conceptual model of git
 
+TODO: add figure/graphic for conceptual model
+
 - Local directory/working directory
 - Staging area
-- Git repository
+- Git repository (repo)
 - Remote repository
 
 ### Setting up git
 
-- Installing
+- Installing - [https://git-scm.com/](https://git-scm.com/)
+  - For Windows, you'll want to install the full Git Bash terminal
 - Working with your git config
-  - Username
-  - Email
+  - Username: `git config --global user.name "Mona Lisa"`
+  - Email: `git config --global user.email "email@example.com"`
 
 ### Initializing a local git repository (`git init`)
 
+-
+
+### Your most important git command (`git status`)
+
 ### Telling git what to keep track of (`git add`)
+
+- Check status (`git status`)
+- See what's different in the files (`git diff`)
 
 ### Telling git when to take a snapshot of your tracked files (`git commit`)
 
