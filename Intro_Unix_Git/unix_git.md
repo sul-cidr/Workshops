@@ -1,21 +1,23 @@
 # Intro to Unix and Git for Academics
-This is a very gentle introduction for non-programmers to the most basic, text-based 
-ways to do things with a computer: the Unix (or Linux) command line.  Sometimes considered 
-arcane, off-putting, or just old-fashioned, a bit of command line knowledge is still 
-required for much digital humanities and social science work, even on a modern Mac or PC -- 
-knowledge that is too often treated as implicit, but too seldom taught.  We will also 
-cover the basics of Git, the near-universal version-control system that is one of basic 
-toolkits of digital scholarship and especially collaboration. This workshop is a safe 
+
+This is a very gentle introduction for non-programmers to the most basic, text-based
+ways to do things with a computer: the Unix (or Linux) command line. Sometimes considered
+arcane, off-putting, or just old-fashioned, a bit of command line knowledge is still
+required for much digital humanities and social science work, even on a modern Mac or PC --
+knowledge that is too often treated as implicit, but too seldom taught. We will also
+cover the basics of Git, the near-universal version-control system that is one of basic
+toolkits of digital scholarship and especially collaboration. This workshop is a safe
 space for people of all experience levels, with no question too basic to ask!
 
-Prerequisites: None.  Please bring your own computer.  It would be helpful before the 
+Prerequisites: None. Please bring your own computer. It would be helpful before the
 class to create a free account on http://github.com if you don’t have one.
 
 ## Learning goals
-* To understand what the command line is, and how it relates to our customary user interfaces
-* To 
-* To become familiar with 10 Unix commands, and 2 Unix programs (a text editor and file transfer)
-* To become familiar with version control using Git
+
+- To understand what the command line is, and how it relates to our customary user interfaces
+- To
+- To become familiar with 10 Unix commands, and 2 Unix programs (a text editor and file transfer)
+- To become familiar with version control using Git
 
 ## Pre-workshop prep
 
@@ -28,6 +30,7 @@ class to create a free account on http://github.com if you don’t have one.
 ## Unix
 
 ### Commands to cover (not in order yet)
+
 `ls`
 
 `cp`
@@ -79,13 +82,12 @@ TODO: add figure/graphic for conceptual model
 - Git repository (repo)
 - Remote repository
 
-### Setting up git
+### Setting up git and Github
 
-- Installing - [https://git-scm.com/](https://git-scm.com/)
-  - For Windows, you'll want to install the full Git Bash terminal
 - Working with your git config
   - Username: `git config --global user.name "Mona Lisa"`
   - Email: `git config --global user.email "email@example.com"`
+- Sign up for Github if you haven't
 
 ### Initializing a local git repository (`git init`)
 
@@ -100,8 +102,14 @@ TODO: add figure/graphic for conceptual model
 
 ### Telling git when to take a snapshot of your tracked files (`git commit`)
 
-### Practice:
+### Remote repositories (`git push` and `git pull`)
+
+### Practice (full workflow):
 
 ### Collaborating with git (fixing merge conflicts)
 
 ### Advanced collaboration (the branching model)
+
+### Cheat Sheet
+
+![image alt text](Git-Cheat-Sheet-pdf-v2.png)
