@@ -22,12 +22,21 @@ class to create a free account on http://github.com if you don’t have one.
 ## Pre-workshop prep
 
 ### Windows: install Git Bash
-[https://gitforwindows.org/]
+https://gitforwindows.org/ -- 
 which provides both a Unix-like shell and Git.
 
 ### Mac: install Git
+https://git-scm.com/downloads
 
-## Unix: defining terms
+## PART I. Unix and the command line
+### What are they, and why do we need them?
+
+### How to get started
+- on a Mac: the `Terminal` app
+- on Windows: the `Bash` program
+
+### Defining terms
+- Shell, command line, prompt
 - File
 - Directory
 - Path
@@ -35,14 +44,14 @@ which provides both a Unix-like shell and Git.
 
 ### Unix syntax
 A language analogy:
-
-* `command` `[-option(s)]` `object1` `object2` 
+* `command` `[-flag(s)]` `object1` `object2` 
 * Verb  [Adverb]  DirectObject  IndirectObject
 
 ### A few essential Unix commands
-`pwd`	
-
 `ls`
+
+`pwd`
+
 
 `cp`
 
@@ -84,7 +93,7 @@ TAB completion
 `vi`
 (plus commands within)
 
-## Git
+## PART II. Git
 
 ### Why do we care about version control and git?
 
