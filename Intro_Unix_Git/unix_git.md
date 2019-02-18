@@ -121,10 +121,29 @@ A language analogy:
 ### A few simple Unix programs
 `ssh`: open a **secure shell** on a remote computer (server)
 
-`sftp`: starte a **secure File Transfer Protocol** session with a remote computer
+`sftp`: start a **secure File Transfer Protocol** session with a remote computer
 
-`vi`: **visually edit** a file
+### A few simple Unix text editors
+`vi`: **visual editor**, an extremely bare-bones text editor
+> `i` or `a`: change to "input" mode 
+> `o` or `O`: open a new line and start "input" mode
+> `x`: delete a single character
+> `dw`: delete an entire word
+> `d3w`: delete three words
+> `dd`: delete an entire line
+> `3dd`: delete three lines
+> `d$`: delete to the end of the line
 
+> `ESC`: change to "command" mode (indicated by a colon `:` at the bottom of the screen)
+>> :`w`: write out (i.e., save) the file
+>> :`q`: quit the program
+>> :`wq`: save the file, then quit the program
+>> :`q!`: quit the program without saving the file
+
+ 
+`pico` and `nano`: slightly more user-friendly, menu-driven editor
+> `^` indicates the `COMMAND` or `CMD` key, so
+> `^O` means: "hold down the `COMMAND` key and press `O`"
 
 
 
