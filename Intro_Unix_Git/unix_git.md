@@ -24,16 +24,26 @@ class to create a free account on http://github.com if you don’t have one.
 
 ### Windows: install Git Bash
 
-https://gitforwindows.org/ --
+[https://gitforwindows.org/] --
 which provides both a Unix-like shell and Git.
 
 ### Mac: install Git
 
-https://git-scm.com/downloads
+[https://git-scm.com/downloads]
 
 ## PART I. Unix and the command line
 
-### What are they, and why do we need them?
+### What are they, and why do we care about them?
+
+- Unix (or Linux, a variant of Unix) is the basis of a huge number of computers:
+  ** the vast majority of web servers
+  ** your space on Stanford's servers
+  \*\* your Mac (it's the "X" in "OS X")
+- Unix emulators are available for Windows
+- The command line is a text-only (keyboard-only) way to interact with a computer
+- Many operations, esp. bulk operations, are faster and clearer from the command line
+- It's a peek behind the scenes, good for troubleshooting, good for understanding what's going on
+- It's assumed, tacit knowledge among people working with computers
 
 ### How to get started
 
@@ -52,54 +62,92 @@ https://git-scm.com/downloads
 
 A language analogy:
 
-- `command` `[-flag(s)]` `object1` `object2`
-- Verb [Adverb] DirectObject IndirectObject
+- `command` `[-flag(s)]` `object1` `object2` `ENTER` (or `RETURN`)
+- Verb [Adverb] DirectObject IndirectObject Period!
 
-### A few essential Unix commands
+### A few essential Unix commands and options
 
-`ls`
+`ls`: **list** what's in a directory
 
-`pwd`
+> `ls -l`: list **long**-format
+> `ls -a`: list **all** files (including special & hidden files)
 
-`cp`
+`man`: show the **manual** for a command
 
-`mv`
+> (alternatively, use the `--help` flag after a command)
 
-`rm`
+`pwd`: **present working directory** (i.e., "what directory am I in?")
 
-`cat`
+`cd`: **change directory**
 
-`wc`
+> **_Directory symbols_**
+>
+> `/`: the root directory _and_ the directory separator in a path
+>
+> `./`: the current directory
+>
+> `../`: the parent directory (relative to the current directory)
+>
+> `~`: your home directory
 
-`grep`
+`cp`: **copy** a file
 
-`cd`
+`mv`: **move** (or rename) a file (or directory)
 
-`./`
+`rm`: **remove** (a.k.a. delete) a file
 
-`../`
+`mkdir`: **make (a new) directory**
 
-`mkdir`
+`rmdir`: **remove (an empty) directory**
 
-`rmdir`
+`cat`: **concatenate** (i.e., show the file contents on the screen)
 
-`|`
+`wc`: **word count**
 
-`>` `>>`
+`grep`: **search** for a pattern in some file(s)
 
-`man`
+> **_Some punctuation for combining commands_** > `|`: **pipe** the output of one command into another command
+>
+> `>`: **write the output of a command to a new file**
+>
+> `>>`: **write the output of a command to the end of an existing file**
 
-TAB completion
+### Some helpful shortcuts
 
-↑ command history
+`TAB`: auto-completion for file and directory names
 
-`ssh`
+`↑`: cycle through the previous command(s)
 
-`sftp`
-(plus commands within)
+### A few simple Unix programs
 
-`vi`
-(plus commands within)
+`ssh`: open a **secure shell** on a remote computer (server)
+
+`sftp`: start a **secure File Transfer Protocol** session with a remote computer
+
+### A few simple Unix text editors
+
+`vi`: **visual editor**, an extremely bare-bones text editor
+
+> `i` or `a`: change to "input" mode
+> `o` or `O`: open a new line and start "input" mode
+> `x`: delete a single character
+> `dw`: delete an entire word
+> `d3w`: delete three words
+> `dd`: delete an entire line
+> `3dd`: delete three lines
+> `d$`: delete to the end of the line
+
+> `ESC`: change to "command" mode (indicated by a colon `:` at the bottom of the screen)
+>
+> > :`w`: write out (i.e., save) the file
+> > :`q`: quit the program
+> > :`wq`: save the file, then quit the program
+> > :`q!`: quit the program without saving the file
+
+`pico` and `nano`: slightly more user-friendly, menu-driven editor
+
+> `^` indicates the `COMMAND` or `CMD` key, so
+> `^O` means: "hold down the `COMMAND` key and press `O`"
 
 ## PART II. Git
 
