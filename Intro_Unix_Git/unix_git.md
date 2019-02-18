@@ -12,22 +12,35 @@ Prerequisites: None.  Please bring your own computer.  It would be helpful befor
 class to create a free account on http://github.com if you don’t have one.
 
 ## Learning goals
-* To understand what the command line is, and how it relates to our customary user interfaces
-* To 
-* To become familiar with 10 Unix commands, and 2 Unix programs (a text editor and file transfer)
+* To understand what the command line is, and how it relates to our customary graphical user interfaces
+* To understand files, directories, paths, commands, and how they interact 
+* To become familiar with 10 Unix commands with their syntax
+* To be introduced to 2 Unix programs (for editing text and transferring files)
 * To become familiar with version control using Git
 
 ## Pre-workshop prep
 
 ### Windows: install Git Bash
-
-    (includes git and bash)
+[https://gitforwindows.org/]
+which provides both a Unix-like shell and Git.
 
 ### Mac: install Git
 
-## Unix
+## Unix: defining terms
+- File
+- Directory
+- Path
+- Command (or program)
 
-### Commands to cover (not in order yet)
+### Unix syntax
+A language analogy:
+
+* `command` `[-option(s)]` `object1` `object2` 
+* Verb  [Adverb]  DirectObject  IndirectObject
+
+### A few essential Unix commands
+`pwd`	
+
 `ls`
 
 `cp`
@@ -35,6 +48,12 @@ class to create a free account on http://github.com if you don’t have one.
 `mv`
 
 `rm`
+
+`cat`
+
+`wc`
+
+`grep`
 
 `cd`
 
@@ -47,6 +66,10 @@ class to create a free account on http://github.com if you don’t have one.
 `rmdir`
 
 `|`
+
+`>` `>>`
+
+`man`
 
 TAB completion
 
