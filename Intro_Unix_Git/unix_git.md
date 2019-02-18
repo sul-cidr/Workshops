@@ -62,6 +62,7 @@ A language analogy:
 ### A few essential Unix commands and options
 `ls`:  **list** what's in a directory
 > `ls -l`: list **long**-format
+>
 > `ls -a`: list **all** files (including special & hidden files)
 
 `man`: show the **manual** for a command
@@ -107,6 +108,7 @@ A language analogy:
 `grep`: **search** for a pattern in some file(s)
 
 > **_Some punctuation for combining commands_**
+>
 > `|`: **pipe** the output of one command into another command
 > 
 > `>`: **write the output of a command to a new file** 
@@ -118,32 +120,35 @@ A language analogy:
 
 `↑`: cycle through the previous command(s)
 
-### A few simple Unix programs
+### A few simple Unix programs for accessing remote computers
 `ssh`: open a **secure shell** on a remote computer (server)
 
 `sftp`: start a **secure File Transfer Protocol** session with a remote computer
 
 ### A few simple Unix text editors
 `vi`: **visual editor**, an extremely bare-bones text editor
-> `i` or `a`: change to "input" mode 
-> `o` or `O`: open a new line and start "input" mode
-> `x`: delete a single character
-> `dw`: delete an entire word
-> `d3w`: delete three words
-> `dd`: delete an entire line
-> `3dd`: delete three lines
-> `d$`: delete to the end of the line
 
-> `ESC`: change to "command" mode (indicated by a colon `:` at the bottom of the screen)
->> :`w`: write out (i.e., save) the file
->> :`q`: quit the program
->> :`wq`: save the file, then quit the program
->> :`q!`: quit the program without saving the file
+- `i` or `a`: change to "insert" mode 
+- `o` or `O`: open a new line and start "insert" mode
+- `ESC`: exit "insert" mode and change to "command" mode 
+- `x`: delete a single character
+- `dw`: delete a word
+- `d3w`: delete three words
+- `dd`: delete a line
+- `3dd`: delete three lines
+- `d$`: delete to the end of the line
+- `:` enter a command
+  - `:u`: undo whatever you just did
+  - `:w`: write out (i.e., save) the file
+  - `:q`: quit the program
+  - `:wq`: save the file, then quit the program
+  - `:q!`: quit the program without saving the file
 
  
-`pico` and `nano`: slightly more user-friendly, menu-driven editor
-> `^` indicates the `COMMAND` or `CMD` key, so
-> `^O` means: "hold down the `COMMAND` key and press `O`"
+`pico` and `nano`: slightly more user-friendly, menu-driven editors
+
+- `^` indicates the `COMMAND` or `CMD` key, so...
+  - `^O` means: "hold down the `COMMAND` key and press `O`"
 
 
 
