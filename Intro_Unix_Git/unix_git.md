@@ -13,29 +13,35 @@ Prerequisites: None. Please bring your own computer. It would be helpful before 
 class to create a free account on http://github.com if you don’t have one.
 
 ## Learning goals
-* To understand what the command line is, and how it relates to our customary graphical user interfaces
-* To understand files, directories, paths, commands, and how they interact 
-* To become familiar with 10 Unix commands with their syntax
-* To be introduced to 2 Unix programs (for editing text and transferring files)
-* To become familiar with version control using Git
+
+- To understand what the command line is, and how it relates to our customary graphical user interfaces
+- To understand files, directories, paths, commands, and how they interact
+- To become familiar with 10 Unix commands with their syntax
+- To be introduced to 2 Unix programs (for editing text and transferring files)
+- To become familiar with version control using Git
 
 ## Pre-workshop prep
 
 ### Windows: install Git Bash
-https://gitforwindows.org/ -- 
+
+https://gitforwindows.org/ --
 which provides both a Unix-like shell and Git.
 
 ### Mac: install Git
+
 https://git-scm.com/downloads
 
 ## PART I. Unix and the command line
+
 ### What are they, and why do we need them?
 
 ### How to get started
+
 - on a Mac: the `Terminal` app
 - on Windows: the `Bash` program
 
 ### Defining terms
+
 - Shell, command line, prompt
 - File
 - Directory
@@ -43,15 +49,17 @@ https://git-scm.com/downloads
 - Command (or program)
 
 ### Unix syntax
+
 A language analogy:
-* `command` `[-flag(s)]` `object1` `object2` 
-* Verb  [Adverb]  DirectObject  IndirectObject
+
+- `command` `[-flag(s)]` `object1` `object2`
+- Verb [Adverb] DirectObject IndirectObject
 
 ### A few essential Unix commands
+
 `ls`
 
 `pwd`
-
 
 `cp`
 
@@ -170,7 +178,11 @@ Git is structured by commits, which are soft of like snapshots of the changes ma
 
 Above, we wrote an inline commit message, something short and to the point that would indicate what the changes in the commit are. If we don't specify that `-m` flag, git will instead open your default text editor, likely vi or vim. In there, we can write a longer multi-line commit message, especially for commits where we have multiple files and multiple changes.
 
-TODO: Write example for this.
+- Reopen your `test.txt` file in vi.
+- Make some more changes.
+- `git status`
+- What should you do now to tell git to include this file in the next commit?
+- Now, let's run `git commit` but don't pass it the `-m` flag or a message. Within the editor that opens, write a short summary message, and below, use dashes to make a list of specific changes. When you then save and exit vi, you should see git finish the commit.
 
 ### Checking our git history (`git log`)
 
@@ -185,7 +197,40 @@ Suppose we want to see all of the commits we've made in our repository. We may w
 
 ### Remote repositories (`git push` and `git pull`)
 
+At this point, we've worked entirely locally. Our files are on our own computers, as is the git repository that is tracking all of our changes by way of commits. Part of what is nice about git, though, is that there are a bunch of different online repositories where you can sync your repository. This allows for collaboration, open source in software development, and a built-in (though self-managed) backup solution for your versioned files. We'll use Github, the most well-known of these remote repositories.
+
+- Go to Github in your browser, and sign in to the account you created earlier.
+- Go to your own user page, then click the "Repositories" tab.
+- Hit "New", then fill out the form with a name for your repository. The rest of the fields are optional.
+- Since we already have a git repository, we'll follow the set of instructions to add this "remote" to an existing repository.
+- `git remote add origin https://github.com/username/reponame.git`
+- In order to sync the remote repository with our local repository, we'll "push" our commits there: `git push -u origin master`.
+- In this case, "origin" is the name of the "remote" repository we're using. This name is set locally for each repository, and it's the default setting. We need these names because it's possible to have multiple remote repositories for a local repository.
+- "Master" refers to which branch we're on. For now, we're not going to work about git's branching model. That's where a lot of complexity comes from, and we can do quite a lot with git without touching that.
+- Once this command has run successfully, refresh your browser and you should see your test file there in Github along with your commits so far.
+- After this, you can just run `git push` without the rest. We only need to add other parameters if we're working on multiple branches or with multiple remotes.
+
+We've pushed our commits from our local repository to our remote repository with `git push`. But, what if we're working with someone else, or working on multiple computers, and there are commits on our remote repository that we don't have on our local machine?
+
+- Run `git status`. You should see a message about whether your local version is up-to-date with the remote.
+- Even though it won't do anything at this point, since our local and remote are in sync, run `git pull`. If there had been changes we didn't have, this would download those changes, and merge them into our local files as long as there aren't conflicts. More on that shortly.
+
 ### Practice (full workflow):
+
+Here's a standard workflow I use with git, assuming an already created repository with a remote.
+
+- Check to see if I have changes that aren't committed: `git status`
+- Check Github to see if there are changes on the remote that I need to have locally. When you ran `git status` you would also see if there are differences between local and remote. If so, commit my changes then pull:
+  - `git add filename.ext`
+  - `git commit -m message`
+  - `git pull`
+- At this point, we can work as normal, and make any changes to our files we want to.
+- Check status when we're done making changes: `git status`.
+- Add the files we want to commit to our staging area: `git add filename.ext`.
+- Commit the files with a message: `git commit -m message`
+- Push our changes to the remote repository: `git push`
+
+Try running through this full workflow one time, and then we'll move to a bit about collaborating with git.
 
 ### Collaborating with git (fixing merge conflicts)
 
