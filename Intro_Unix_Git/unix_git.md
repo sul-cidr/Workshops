@@ -323,3 +323,20 @@ I think it's almost always worth it for teams of more than a couple of people to
 ### Cheat Sheet
 
 ![image alt text](Git-Cheat-Sheet-pdf-v2.png)
+
+### GUI Git
+
+We've been teaching you to use the command line or terminal, so we used git in the terminal. That's how I use it on an almost daily basis, and it provides a tremendous amount of power once you get used to it and if you use advanced features.
+
+But, you can use graphical interfaces also, and it's great to do so. Several companies have built graphical interfaces that make it easier to do all the basic things in git, which covers 90% of what most people do. So, feel free to download one of these applications and use it. By going through what we've done on the command line, hopefully what you might do in a graphical interface will be clearer.
+
+[Github Desktop](https://desktop.github.com/) - easy to use, perfect integration with Github
+[Git Kraken](https://www.gitkraken.com/git-client) - more complex, but offers access to more advanced git features.
+[Sublime Merge](https://www.sublimemerge.com/) - a GUI client from the makers of one of the best code editors out there.
+
+-- Or --
+
+Use a text editor with Git features built in, such as:
+
+- [VS CODE](https://code.visualstudio.com/)
+- [Atom](https://atom.io/)
