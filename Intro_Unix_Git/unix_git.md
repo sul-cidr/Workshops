@@ -47,8 +47,8 @@ which provides both a Unix-like shell and Git.
 
 ### How to get started
 
-- on a Mac: the `Terminal` app
-- on Windows: the `Bash` program
+- on a Mac: `Terminal` app
+- on Windows: `Git Bash` program
 
 ### Defining terms
 
@@ -155,6 +155,7 @@ now's a good time to make one: `mkdir tmp`.
 - **Try it:**
 
 `rm`: **remove** (a.k.a. delete) a file
+> `-r`: remove recursively: DANGER!
 
 - **Try it:**
 
@@ -188,9 +189,13 @@ now's a good time to make one: `mkdir tmp`.
 
 `↑`: cycle through the previous command(s)
 
+`^C`
+
 ### A few simple Unix programs for accessing remote computers
 
 `ssh`: open a **secure shell** on a remote computer (server)
+`ssh gworthey@rice.stanford.edu`
+
 
 `sftp`: start a **secure File Transfer Protocol** session with a remote computer
 
@@ -201,23 +206,25 @@ now's a good time to make one: `mkdir tmp`.
 - `i` or `a`: change to "insert" mode
 - `o` or `O`: open a new line and start "insert" mode
 - `ESC`: exit "insert" mode and change to "command" mode
-- `x`: delete a single character
-- `dw`: delete a word
-- `d3w`: delete three words
-- `dd`: delete a line
-- `3dd`: delete three lines
-- `d$`: delete to the end of the line
 - `:` enter a command
   - `:u`: undo whatever you just did
   - `:w`: write out (i.e., save) the file
   - `:q`: quit the program
   - `:wq`: save the file, then quit the program
   - `:q!`: quit the program without saving the file
+- `x`: delete a single character
+- `dw`: delete a word
+- `d3w`: delete three words
+- `dd`: delete a line
+- `3dd`: delete three lines
+- `d$`: delete to the end of the line
 
 `pico` and `nano`: slightly more user-friendly, menu-driven editors
 
 - `^` indicates the `COMMAND` or `CMD` key, so...
   - `^O` means: "hold down the `COMMAND` key and press `O`"
+
+![Unix Command-Line Cheat Sheet](unix-commandline-cheat-sheet.jpg)
 
 ## PART II. Git
 
