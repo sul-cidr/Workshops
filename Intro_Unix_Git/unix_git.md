@@ -47,7 +47,8 @@ which provides both a Unix-like shell and Git.
 
 ### How to get started
 
-**Try it:** 
+**Try it:**
+
 - on a Mac: `Terminal` app
 - on Windows: `Git Bash` program
 
@@ -63,22 +64,22 @@ which provides both a Unix-like shell and Git.
 
 Most Unix commands follow some version of the following syntax:
 
-- `command` `-flag(s)` `object1` `object2` 
+- `command` `-flag(s)` `object1` `object2`
 - ...then push `ENTER` to execute the command
 
-Although these commands may initially seem arcane or esoteric, their syntax is a close analog to human language: 
+Although these commands may initially seem arcane or esoteric, their syntax is a close analog to human language:
 
-- Verb + Adverb + DirectObject + IndirectObject 
+- Verb + Adverb + DirectObject + IndirectObject
 - ...followed by punctuation to end the sentence.
 
-For example, 
+For example,
 
 `cp -i text.txt backup/.`
 
 means something like, "Copy interactively the file "text" to the "backup" directory."
- 
-Just as not all verbs take direct or indirect objects, so not all commands require objects; 
-likewise, neither adverbs nor "flags" (a.k.a. "options") are always required for meaningful 
+
+Just as not all verbs take direct or indirect objects, so not all commands require objects;
+likewise, neither adverbs nor "flags" (a.k.a. "options") are always required for meaningful
 sentences or commands.
 
 ### A few essential Unix commands and options
@@ -96,20 +97,20 @@ sentences or commands.
 > With no object, `ls` lists what's in the current directory; if a different directory is in the object position, it lists the contents of that directory
 
 - **Try it:** In your terminal, try the `ls` command with and without these flags.  
-Outside your terminal, open a Finder window (Mac) or Explorer (Windows) and compare what you 
-see.  Find the folder in your "normal" (GUI) desktop that corresponds to the directory you're
-listing on the command line.
- 
+  Outside your terminal, open a Finder window (Mac) or Explorer (Windows) and compare what you
+  see. Find the folder in your "normal" (GUI) desktop that corresponds to the directory you're
+  listing on the command line.
+
 `man [command]` or `[command] --help`: show the **manual** or **help** screen for a particular command
 
-- **Try it:**  In your terminal, try `man ls` (or on Windows, `ls --help`) to see the manual (including dozens of options) for this command.
+- **Try it:** In your terminal, try `man ls` (or on Windows, `ls --help`) to see the manual (including dozens of options) for this command.
 
 > Page down in this "manual" file using the `SPACE` bar; page up using the `B` (for **back**) key; quit the manual using the `Q` key.
 
 `pwd`: **present working directory** (i.e., "what directory am I in?")
 
 - **Try it:** `pwd`
- 
+
 `cd`: **change directory**
 
 > **_Directory symbols_**
@@ -123,51 +124,49 @@ listing on the command line.
 > `~`: your home directory
 
 - **Try it:** Change directories to the root `cd /`, then back to your home directory `cd ~`
-(or `cd` with no argument).
+  (or `cd` with no argument).
 - Check whether you're in your home directory: `pwd`
 - Change to the parent directory of your home directory: `cd ../` and note what it's called.
 - Change back to your home directory: `cd`.
 - See what subdirectories you have in your home directory: `ls -F` (look for the trailing `/` character).
 - Change to one of those subdirectories, see what's in it: `ls -F`, then change to yet a deeper subdirectory, and see what's in that.
-- Check your *present working directory* (i.e., which directory you're in now): `pwd`. 
+- Check your _present working directory_ (i.e., which directory you're in now): `pwd`.
 - Change back to your home directory: `cd`.
- 
+
 `mkdir`: **make a new directory**
 
-- **Try it:**  `mkdir tmp`
-That is, "make a new directory called 'tmp.' 
-If you don't already have a temporary directory in your home directory, 
-now's a good time to make one.
+- **Try it:** `mkdir tmp`
+  That is, "make a new directory called 'tmp.'
+  If you don't already have a temporary directory in your home directory,
+  now's a good time to make one.
 - See what's in that subdirectory: `ls tmp/`. (It should be empty if you just created it!)
 - Change to your new "tmp" directory: `cd tmp`.
 - Confirm that you're actually in that directory: `pwd`
 
-
 `touch`: **create a new file** (or change the "last touched" date of an existing file)
 
 - **Try it:** `touch test.txt`
-That is, "create a new file called 'test.txt'."  It will be empty; we'll just use it
-for practice today.
-
+  That is, "create a new file called 'test.txt'." It will be empty; we'll just use it
+  for practice today.
 
 `cp`: **copy** a file to another file (and/or location)
 
 > The first argument is the file you want to copy; the second is the destination of that copy:
 > either what you want the copy to be named, and/or which directory you want it to be in.
-> A `.` means to keep the same file name for a copy in a different directory. 
+> A `.` means to keep the same file name for a copy in a different directory.
 
-- **Try it:** 
+- **Try it:**
 - `cp test.txt copy.txt` (That is, create a copy of the "test.txt" file, and call it "copy.txt".)
 - `ls` to see that you now have two files in your `tmp` directory.
-- `ls -lh` to confirm that these are identical: they'll have the same size and other parameters. 
-- `cp filename tmp/.` 
-
+- `ls -lh` to confirm that these are identical: they'll have the same size and other parameters.
+- `cp filename tmp/.`
 
 `mv`: **move** (or rename) a file (or directory)
 
 - **Try it:**
 
 `rm`: **remove** (a.k.a. delete) a file
+
 > `-r`: remove recursively: DANGER!
 
 - **Try it:**
@@ -209,7 +208,6 @@ for practice today.
 `ssh`: open a **secure shell** on a remote computer (server)
 `ssh gworthey@rice.stanford.edu`
 
-
 `sftp`: start a **secure File Transfer Protocol** session with a remote computer
 
 ### A few simple Unix text editors
@@ -238,6 +236,7 @@ for practice today.
   - `^O` means: "hold down the `COMMAND` key and press `O`"
 
 ### A Unix command-line cheat sheet
+
 ![Unix Command-Line Cheat Sheet](unix-commandline-cheat-sheet.jpg)
 
 Image courtesy of [Noé Fernández-Pozo on Slideshare](https://www.slideshare.net/NoFernndezPozo/unix-command-sheet2014)
@@ -430,3 +429,7 @@ Use a text editor with Git features built in, such as:
 
 - [VS CODE](https://code.visualstudio.com/)
 - [Atom](https://atom.io/)
+
+## Quick eval survey:
+
+https://stanforduniversity.qualtrics.com/jfe/form/SV_cZRxW2wvnMDSy57
