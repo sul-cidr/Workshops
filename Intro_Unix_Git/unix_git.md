@@ -47,6 +47,7 @@ which provides both a Unix-like shell and Git.
 
 ### How to get started
 
+**Try it:** 
 - on a Mac: `Terminal` app
 - on Windows: `Git Bash` program
 
@@ -99,12 +100,11 @@ Outside your terminal, open a Finder window (Mac) or Explorer (Windows) and comp
 see.  Find the folder in your "normal" (GUI) desktop that corresponds to the directory you're
 listing on the command line.
  
-`man`: show the **manual** for a command
+`man [command]` or `[command] --help`: show the **manual** or **help** screen for a particular command
 
-> (alternatively, use the `--help` flag after a command)
+- **Try it:**  In your terminal, try `man ls` (or on Windows, `ls --help`) to see the manual (including dozens of options) for this command.
 
-- **Try it:**  In your terminal, try `man ls` to see the manual (including dozens of options) for this command.
-Page down in this "manual" file using the `SPACE` bar; page up using the `B` key; quit the manual using the `Q` key.
+> Page down in this "manual" file using the `SPACE` bar; page up using the `B` (for **back**) key; quit the manual using the `Q` key.
 
 `pwd`: **present working directory** (i.e., "what directory am I in?")
 
@@ -132,11 +132,22 @@ Page down in this "manual" file using the `SPACE` bar; page up using the `B` key
 - Check your *present working directory* (i.e., which directory you're in now): `pwd`. 
 - Change back to your home directory: `cd`.
  
-`mkdir`: **make (a new) directory**
+`mkdir`: **make a new directory**
 
-- **Try it:**  If you don't already have a temporary directory in your home directory, 
-now's a good time to make one: `mkdir tmp`.
+- **Try it:**  `mkdir tmp`
+That is, "make a new directory called 'tmp.' 
+If you don't already have a temporary directory in your home directory, 
+now's a good time to make one.
 - See what's in that subdirectory: `ls tmp/`. (It should be empty if you just created it!)
+- Change to your new "tmp" directory: `cd tmp`.
+- Confirm that you're actually in that directory: `pwd`
+
+
+`touch`: **create a new file** (or change the "last touched" date of an existing file)
+
+- **Try it:** `touch test.txt`
+That is, "create a new file called 'test.txt'."  It will be empty; we'll just use it
+for practice today.
 
 
 `cp`: **copy** a file to another file (and/or location)
@@ -145,8 +156,10 @@ now's a good time to make one: `mkdir tmp`.
 > either what you want the copy to be named, and/or which directory you want it to be in.
 > A `.` means to keep the same file name for a copy in a different directory. 
 
-- **Try it:** `ls -F` your current directory, and choose something that's not a directory.
-- `cp filename copy`
+- **Try it:** 
+- `cp test.txt copy.txt` (That is, create a copy of the "test.txt" file, and call it "copy.txt".)
+- `ls` to see that you now have two files in your `tmp` directory.
+- `ls -lh` to confirm that these are identical: they'll have the same size and other parameters. 
 - `cp filename tmp/.` 
 
 
@@ -224,7 +237,10 @@ now's a good time to make one: `mkdir tmp`.
 - `^` indicates the `COMMAND` or `CMD` key, so...
   - `^O` means: "hold down the `COMMAND` key and press `O`"
 
+### A Unix command-line cheat sheet
 ![Unix Command-Line Cheat Sheet](unix-commandline-cheat-sheet.jpg)
+
+Image courtesy of [Noé Fernández-Pozo on Slideshare](https://www.slideshare.net/NoFernndezPozo/unix-command-sheet2014)
 
 ## PART II. Git
 
