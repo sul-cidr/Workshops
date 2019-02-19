@@ -85,45 +85,90 @@ sentences or commands.
 `ls`: **list** what's in a directory
 
 > `ls -l`: list in **long** format
-
+>
 > `ls -a`: list **all** files (including special & hidden files)
-
+>
 > `ls -h`: list file sizes in **human**-readable format
-
+>
+> `ls -F`: list files with **Final** characters indicating what type of files they are. Directories will end in `/`
+>
 > With no object, `ls` lists what's in the current directory; if a different directory is in the object position, it lists the contents of that directory
 
+- **Try it:** In your terminal, try the `ls` command with and without these flags.  
+Outside your terminal, open a Finder window (Mac) or Explorer (Windows) and compare what you 
+see.  Find the folder in your "normal" (GUI) desktop that corresponds to the directory you're
+listing on the command line.
+ 
 `man`: show the **manual** for a command
 
 > (alternatively, use the `--help` flag after a command)
 
+- **Try it:**  In your terminal, try `man ls` to see the manual (including dozens of options) for this command.
+Page down in this "manual" file using the `SPACE` bar; page up using the `B` key; quit the manual using the `Q` key.
+
 `pwd`: **present working directory** (i.e., "what directory am I in?")
 
+- **Try it:** `pwd`
+ 
 `cd`: **change directory**
 
 > **_Directory symbols_**
-
+>
 > `/`: the root directory _and_ the directory separator in a path
-
+>
 > `./`: the current directory
-
+>
 > `../`: the parent directory (relative to the current directory)
-
+>
 > `~`: your home directory
 
-
+- **Try it:** Change directories to the root `cd /`, then back to your home directory `cd ~`
+(or `cd` with no argument).
+- Check whether you're in your home directory: `pwd`
+- Change to the parent directory of your home directory: `cd ../` and note what it's called.
+- Change back to your home directory: `cd`.
+- See what subdirectories you have in your home directory: `ls -F` (look for the trailing `/` character).
+- Change to one of those subdirectories, see what's in it: `ls -F`, then change to yet a deeper subdirectory, and see what's in that.
+- Check your *present working directory* (i.e., which directory you're in now): `pwd`. 
+- Change back to your home directory: `cd`.
+ 
 `mkdir`: **make (a new) directory**
 
-`cp`: **copy** a file
+- **Try it:**  If you don't already have a temporary directory in your home directory, 
+now's a good time to make one: `mkdir tmp`.
+- See what's in that subdirectory: `ls tmp/`. (It should be empty if you just created it!)
+
+
+`cp`: **copy** a file to another file (and/or location)
+
+> The first argument is the file you want to copy; the second is the destination of that copy:
+> either what you want the copy to be named, and/or which directory you want it to be in.
+> A `.` means to keep the same file name for a copy in a different directory. 
+
+- **Try it:** `ls -F` your current directory, and choose something that's not a directory.
+- `cp filename copy`
+- `cp filename tmp/.` 
+
 
 `mv`: **move** (or rename) a file (or directory)
 
+- **Try it:**
+
 `rm`: **remove** (a.k.a. delete) a file
+
+- **Try it:**
 
 `rmdir`: **remove (an empty) directory**
 
+- **Try it:**
+
 `cat`: **concatenate** (i.e., show the file contents on the screen)
 
+- **Try it:**
+
 `wc`: **word count**
+
+- **Try it:**
 
 `grep`: **search** for a pattern in some file(s)
 
@@ -134,6 +179,8 @@ sentences or commands.
 > `>`: **write the output of a command to a new file**
 >
 > `>>`: **write the output of a command to the end of an existing file**
+
+- **Try it:**
 
 ### Some helpful shortcuts
 
