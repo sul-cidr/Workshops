@@ -110,8 +110,8 @@ A language analogy:
 > **_Some punctuation for combining commands_**
 >
 > `|`: **pipe** the output of one command into another command
-> 
-> `>`: **write the output of a command to a new file** 
+>
+> `>`: **write the output of a command to a new file**
 >
 > `>>`: **write the output of a command to the end of an existing file**
 
@@ -122,6 +122,7 @@ A language analogy:
 `↑`: cycle through the previous command(s)
 
 ### A few simple Unix programs for accessing remote computers
+
 `ssh`: open a **secure shell** on a remote computer (server)
 
 `sftp`: start a **secure File Transfer Protocol** session with a remote computer
@@ -130,9 +131,9 @@ A language analogy:
 
 `vi`: **visual editor**, an extremely bare-bones text editor
 
-- `i` or `a`: change to "insert" mode 
+- `i` or `a`: change to "insert" mode
 - `o` or `O`: open a new line and start "insert" mode
-- `ESC`: exit "insert" mode and change to "command" mode 
+- `ESC`: exit "insert" mode and change to "command" mode
 - `x`: delete a single character
 - `dw`: delete a word
 - `d3w`: delete three words
@@ -146,7 +147,6 @@ A language analogy:
   - `:wq`: save the file, then quit the program
   - `:q!`: quit the program without saving the file
 
- 
 `pico` and `nano`: slightly more user-friendly, menu-driven editors
 
 - `^` indicates the `COMMAND` or `CMD` key, so...
@@ -285,12 +285,41 @@ Try running through this full workflow one time, and then we'll move to a bit ab
 
 ### Collaborating with git (fixing merge conflicts)
 
-### Advanced collaboration (the branching model)
+One model of collaboration with git is to have everyone working on a single branch with a single remote repository. Each collaborator has a version of that repository locally, makes whatever changes they need to, then pushes their commits to the remote. Each time someone works, they would run through the workflow above, pulling down changes before they do their own work and push it up to the remote.
+
+One advantage of this model is clarity. There is a single source of truth that is the single branch as it lives on the remote repository. If everyone agrees to that and to the working model, they never have to wonder what the most recent version of some file is.
+
+There is a disadvantage, though. With more people working on the same branch and pushing regularly to the remote repository, you are much more likely to have merge conflicts that you have to fix. Merge conflicts occur when you pull down changes from the remote (`git pull`), but there are parts of your local files that are different from the version you're pulling down. When you run `git pull`, git does it's best to merge the two versions together. But if it can't because of conflicts, it makes you resolve those conflicts, choosing the version of the file to keep.
+
+We aren't going to try to generate merge conflicts in your own repositories today, but we will demonstrate one.
+
+- Co-teacher will edit the title of this file, commit it, then push to the remote.
+- I'll edit the same title, and commit it, but **not** push.
+- Then, I'll pull down the remote. We should get a merge conflict.
+- Within the file, we'll choose which version we want to keep, or blend the versions.
+- Then, `git add` the file, and `git commit` to commit the merge.
+
+With this, we do get great transparency. The merge commit shows that a decision was made between two versions of a file, and that decision is another change that we can track and revert if needed.
+
+### The branching model - a sneak peak at more advanced collaboration
+
+We unfortunately don't have time to work through the branching model of git, but, time permitting, let's talk about it briefly so you have a sense of it.
+
+The branching model is the standard way of collaborating in software engineering where the project is managed with git. We use branches and a particular workflow all the time for digital projects in CIDR. The advantage is a better capacity to have multiple people working on a single project. The branching model cuts down on merge conflicts, encourages people reviewing each other's work, and can protect from introducing inadvertant bugs or errors into the work.
+
+Here's a simple version of branching:
+
+![Simple git branch example figure](git-branch-basic.png)
+
+Image courtesy of [this tutorial on git branches and merging](https://medium.com/@haydar_ai/learning-how-to-git-merging-branches-and-resolving-conflict-61652834d4b0).
+
+Here's a more complex example:
+![Complex git branch example figure](git-branch-complex.png)
+
+Image courtesy of [this write-up of a fairly normal complex branching workflow](https://medium.com/@stansarr/git-workflow-branches-strategy-4d29f9b2a417).
+
+I think it's almost always worth it for teams of more than a couple of people to use a branching workflow, but it is more complex, a bit harder to learn, and requires more from the people participating. At the end of the day, any approach where you use version control where you didn't before is almost always better, regardless of your workflow model.
 
 ### Cheat Sheet
 
 ![image alt text](Git-Cheat-Sheet-pdf-v2.png)
-
-TODO: add brief section on formats that don't work well with git.
-
-TODO: further resources on good commit messages.
