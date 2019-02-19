@@ -35,12 +35,12 @@ which provides both a Unix-like shell and Git.
 
 ### What are they, and why do we care about them?
 
+- The command line is a text-only (i.e., keyboard-only) way to interact with a computer
 - Unix (or Linux, a variant of Unix) is the basis of a huge number of computers:
-  ** the vast majority of web servers
-  ** your space on Stanford's servers
-  \*\* your Mac (it's the "X" in "OS X")
-- Unix emulators are available for Windows
-- The command line is a text-only (keyboard-only) way to interact with a computer
+  - the vast majority of web servers
+  - your space on Stanford's servers
+  - your Mac (it's the "X" in "OS X")
+  - your Windows machine (as an emulator)
 - Many operations, esp. bulk operations, are faster and clearer from the command line
 - It's a peek behind the scenes, good for troubleshooting, good for understanding what's going on
 - It's assumed, tacit knowledge among people working with computers
@@ -58,20 +58,39 @@ which provides both a Unix-like shell and Git.
 - Path
 - Command (or program)
 
-### Unix syntax
+### Unix syntax: a language analogy
 
-A language analogy:
+Most Unix commands follow some version of the following syntax:
 
-- `command` `[-flag(s)]` `object1` `object2` `ENTER` (or `RETURN`)
-- Verb [Adverb] DirectObject IndirectObject Period!
+- `command` `-flag(s)` `object1` `object2` 
+- ...then push `ENTER` to execute the command
+
+Although these commands may initially seem arcane or esoteric, their syntax is a close analog to human language: 
+
+- Verb + Adverb + DirectObject + IndirectObject 
+- ...followed by punctuation to end the sentence.
+
+For example, 
+
+`cp -i text.txt backup/.`
+
+means something like, "Copy interactively the file "text" to the "backup" directory."
+ 
+Just as not all verbs take direct or indirect objects, so not all commands require objects; 
+likewise, neither adverbs nor "flags" (a.k.a. "options") are always required for meaningful 
+sentences or commands.
 
 ### A few essential Unix commands and options
 
 `ls`: **list** what's in a directory
 
-> `ls -l`: list **long**-format
->
+> `ls -l`: list in **long** format
+
 > `ls -a`: list **all** files (including special & hidden files)
+
+> `ls -h`: list file sizes in **human**-readable format
+
+> With no object, `ls` lists what's in the current directory; if a different directory is in the object position, it lists the contents of that directory
 
 `man`: show the **manual** for a command
 
@@ -82,22 +101,23 @@ A language analogy:
 `cd`: **change directory**
 
 > **_Directory symbols_**
->
+
 > `/`: the root directory _and_ the directory separator in a path
->
+
 > `./`: the current directory
->
+
 > `../`: the parent directory (relative to the current directory)
->
+
 > `~`: your home directory
+
+
+`mkdir`: **make (a new) directory**
 
 `cp`: **copy** a file
 
 `mv`: **move** (or rename) a file (or directory)
 
 `rm`: **remove** (a.k.a. delete) a file
-
-`mkdir`: **make (a new) directory**
 
 `rmdir`: **remove (an empty) directory**
 
