@@ -1,4 +1,4 @@
-# Intro to Unix and Git for Academics
+# This is no longer a title
 
 This is a very gentle introduction for non-programmers to the most basic, text-based
 ways to do things with a computer: the Unix (or Linux) command line. Sometimes considered
