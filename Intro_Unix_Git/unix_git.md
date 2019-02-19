@@ -159,34 +159,49 @@ for practice today.
 - **Try it:** 
 - `cp test.txt copy.txt` (That is, create a copy of the "test.txt" file, and call it "copy.txt".)
 - `ls` to see that you now have two files in your `tmp` directory.
-- `ls -lh` to confirm that these are identical: they'll have the same size and other parameters. 
-- `cp filename tmp/.` 
+- `ls -l` to confirm that these are identical: they'll have the same size and other details. 
+- Make another new directory (which will be a subdirectory of the current one), and copy your test file into it: `mkdir subtmp`, then `cp test.txt subtmp/.`
+- Look at the file in both places: `ls` (for the current directory), and `ls subtmp` (for your new subdirectory) 
+- Make a couple of extra copies of the file: `cp test.txt a-copy.txt`; then `cp test.txt b-copy.txt`; then `cp test.txt c-copy.txt`; etc.
+
+Look at the shortcuts below: try the up-arrow shortcut to redo your last command, 
+then edit the command (backspace over the last filename, and enter a new filename).
 
 
 `mv`: **move** (or rename) a file (or directory)
+> The first argument is the thing you want to move, and the second is the place you want to move it to.
 
-- **Try it:**
+- **Try it:** `pwd` to remind yourself which directory you're in, then
+  - `ls` to remind you of which files are in this directory
+  - `mv copy.txt subtmp` to move the file "copy.txt" to your new subdirectory
+  - `ls` to confirm that it's no longer where it was before
+  - `cd subtmp` to change to your subdirectory, and `ls` to see what's there
+  - Now use `mv` just to change the name of the file: `mv a-copy.txt z-copy.txt` in the same directory
+  - `ls` to see what you've got left in this directory
 
 `rm`: **remove** (a.k.a. delete) a file
 > `-r`: remove recursively: DANGER!
 
-- **Try it:**
+- **Try it:** Delete that z-copy.txt with `rm z-copy.txt`
 
-`rmdir`: **remove (an empty) directory**
+Look at the shortcuts below: try the `TAB` shortcut to use auto-completion 
+in order to delete one more file: `rm b` then `TAB` -- which should auto-complete to `b-copy.txt`
 
-- **Try it:**
+Look at the **punctuation** section below to create a few new files with a lot of text.
 
 `cat`: **concatenate** (i.e., show the file contents on the screen)
 
-- **Try it:**
+- **Try it:** `cat mylist`
 
 `wc`: **word count**
 
-- **Try it:**
+- **Try it:** `wc mylist` and `wc mylonglist`
 
 `grep`: **search** for a pattern in some file(s)
 
-> **_Some punctuation for combining commands_**
+- **Try it:** `grep "copy" mylist`
+
+### Some punctuation for combining commands
 >
 > `|`: **pipe** the output of one command into another command
 >
@@ -194,7 +209,8 @@ for practice today.
 >
 > `>>`: **write the output of a command to the end of an existing file**
 
-- **Try it:**
+- **Try it:** Create new files out of your directory listing: `ls > mylist`
+and `ls -l > mylonglist`
 
 ### Some helpful shortcuts
 
@@ -202,7 +218,7 @@ for practice today.
 
 `↑`: cycle through the previous command(s)
 
-`^C`
+`^C` (a.k.a. `CTRL-C`): **Cancel** the current process (an escape hatch)
 
 ### A few simple Unix programs for accessing remote computers
 
