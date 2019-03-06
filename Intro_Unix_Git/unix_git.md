@@ -1,5 +1,4 @@
-
-# This is no longer a title
+# Intro to Unix and Git for Academics
 
 This is a very gentle introduction for non-programmers to the most basic, text-based
 ways to do things with a computer: the Unix (or Linux) command line. Sometimes considered
@@ -448,6 +447,6 @@ Use a text editor with Git features built in, such as:
 - [VS CODE](https://code.visualstudio.com/)
 - [Atom](https://atom.io/)
 
-## Quick eval survey:
+## Quick evaluation survey:
 
 https://stanforduniversity.qualtrics.com/jfe/form/SV_cZRxW2wvnMDSy57
