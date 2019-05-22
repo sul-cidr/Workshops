@@ -19,7 +19,7 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
   - Terms of Service
   - Ethical concerns regarding privacy
 - Using existing data
-  - There are social media datasets floating around reddit and other places with different amounts of documentation. You have to make a decision about whether they can be used or not based on your use case and discipline. You should absolutely be thinking about how the data was collected and whether use of that data violates legal or ethical concerns.
+  - There are social media datasets floating around reddit and other places with different amounts of documentation. You have to make a decision about whether they can be used or not based on your use case and discipline. You should absolutely be thinking about how the data was collected and whether use of that data violates legal restrictions or ethical best practices.
   - There are a lot of repositories out there with documented data as well.
   - Many of the existing datasets will not match your particular research question, but you might be able to subset them to create a suitable dataset.
 - Creating your own datasets
@@ -35,13 +35,13 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
 - http://theconversation.com/facebooks-data-lockdown-is-a-disaster-for-academic-researchers-94533
 - https://developers.facebook.com/docs/graph-api/
 
-First, don't scrape Facebook. It's definitely against Terms of Service.
+First, don't try to scrape Facebook. It won't work and it's definitely against the terms of service. Facebook has put a lot of work into anti-scraping mesures in their page code, and the techniques change often enough that it's not worth investing in workarounds for what's currently in place.
 
-A lot of people are interested in collecting posts from public Facebook Groups. It used to be possible to use a Facebook API to collect this data. After the Cambridge Analytica scandal, Facebook is mostly locked down, though the Graph API is still around with significant limitations. At this point, access to data through the API is almost entirely dependent upon explicit approval by Facebook.
+A lot of people are interested in collecting posts from public Facebook Groups. It used to be possible to use a Facebook API to collect this data. After the Cambridge Analytica scandal, Facebook is almost entirely locked down. While the Graph API is still around, you have to establish a Facebook Developer profile for yourself as a business (complete with official business documentation) that's providing services of some sort to users or other businesses to even access the most basic public information for pages.
 
 Existing data: you can find stray Facebook datasets on reddit, data.world, and other places on the internet. However, given the lack of clarity around how the data were collected and such, it's unlikely these could be used publishable research. You can also find occasional datasets released by people who own the Facebook data, such as cities who are providing information about their communications, though this data is often metadata rather the posts and comments themselves.
 
-Collaboration: Facebook does accept proposals for research collaborations, though I don't know details (https://research.fb.com/programs/).
+Collaboration: Facebook periodically puts out RFPs for [research collaborations](https://research.fb.com/programs/). You can sign up for their mailing list to receive the RFPs, but they're focused on technical issues relevant to Facebook's own interests (including things like multilingual NLP, but not sociocultural phenomena).
 
 ### Instagram
 
