@@ -17,13 +17,15 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
 - Why don't we just scrape it?
   - Licensing
   - Terms of Service
+  - What to look for in Licenses or Terms of Service pages
   - Ethical concerns regarding privacy
 - Using existing data
   - There are social media datasets floating around reddit and other places with different amounts of documentation. You have to make a decision about whether they can be used or not based on your use case and discipline. You should absolutely be thinking about how the data was collected and whether use of that data violates legal or ethical concerns.
   - There are a lot of repositories out there with documented data as well.
   - Many of the existing datasets will not match your particular research question, but you might be able to subset them to create a suitable dataset.
 - Creating your own datasets
-  - APIs
+  - APIs and associated libraries for programming languages
+    - An API is not necessarily a way to scrape data; it is often built for application developers to use, not for data collection.
   - Social Feed Manager
 - Opportunities for working directly with companies
 
@@ -87,6 +89,10 @@ TweetSets: https://tweetsets.library.gwu.edu/
 
 ### Sino Weibo
 
+Much like Twitter, Sino Weibo has an API that you can use directly or through different programming libraries or applications to create new datasets.
+
+You can also use Social Feed Manager as a way to manage your API access.
+
 ### Yelp
 
 Yelp makes a relatively large dataset available for educational and academic purposes: https://www.yelp.com/dataset
@@ -97,12 +103,32 @@ From the Yelp terms of service (https://www.yelp.com/static?p=tos):
 
 > Use any robot, spider, site search/retrieval application, or other automated device, process or means to access, retrieve, scrape, or index any portion of the Site or any Site Content;
 
-### Spotify (include this or not?)
+### Reddit
+
+Reddit has an API that you can use to gather Reddit data, and there are a number of libraries for different languages to assist with using the API.
+
+There are also quite a few Reddit corpora floating around the internet. As always, make sure you understand what's contained in the data, how it was gathered, and so forth.
+
+### Tumblr
+
+Following the terms of service, you should also not scrape Tumblr - https://www.tumblr.com/policy/en/terms-of-service (see the "Limitations on Automated Use").
+
+There is an API of limited usefulness. See limitations here - https://www.tumblr.com/docs/en/api_agreement - that include a provision wherein you cannot store Tumble data for more than 3 days.
+
+And there are existing datasets out there, such as this interesting data on gifs with descriptions: https://www.kaggle.com/raingo/tumblr-gif-description-dataset.
 
 ## Places to search for data
 
 - https://archive.ics.uci.edu/ml/index.php
 - https://snap.stanford.edu/data/
 - http://socialcomputing.asu.edu/pages/datasets
+- https://aminer.org/data-sna
+- https://www.kaggle.com/datasets
+- https://toolbox.google.com/datasetsearch
+- https://www.data.gov/
+
+## Industry offerings that might be useful
+
+- Discovertext
 
 ## An example analysis with Twitter data
