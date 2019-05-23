@@ -14,6 +14,7 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
 
 ## Fundamental questions and approaches
 
+- What are "Social Media"?
 - Why don't we just scrape it?
   - Licensing
   - Terms of Service
@@ -79,6 +80,8 @@ https://developer.twitter.com/en/docs/basics/things-every-developer-should-know:
 
 > Additionally, there are some families of APIs (such as the Ads API) which require applications to be whitelisted in order to make use of them.
 
+> Twitters ToS do not allow to publish collections of entire tweets, but data can be "hydrated"
+
 https://developer.twitter.com/en/developer-terms/agreement-and-policy#f-be-a-good-partner-to-twitter
 
 https://gwu-libraries.github.io/sfm-ui/posts/2017-09-14-twitter-data
@@ -126,6 +129,8 @@ And there are existing datasets out there, such as this interesting data on gifs
 - https://www.kaggle.com/datasets
 - https://toolbox.google.com/datasetsearch
 - https://www.data.gov/
+- https://www.docnow.io/catalog/ 
+- http://files.pushshift.io
 
 ## Industry offerings that might be useful
 
