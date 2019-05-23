@@ -159,3 +159,11 @@ cdmx %>%
 ```
 
 ![Mexico City Tweets](img/cdmx_leaflet.png)
+
+## Resources
+
+SAGE handbook of social media research methods - https://searchworks.stanford.edu/view/11999820
+
+Salganik, MJ (2018): _Bit by bit : social research in the digital age_ Princeton, New Jersey : Princeton University Press. https://searchworks.stanford.edu/view/12380521
+
+Townsend, L and Wallace, C (2016): _Social Media Research: A Guide to Ethics._ http://dotrural.ac.uk/socialmediaresearchethics.pdf
