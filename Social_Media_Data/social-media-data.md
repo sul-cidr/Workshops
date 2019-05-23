@@ -137,3 +137,25 @@ And there are existing datasets out there, such as this interesting data on gifs
 - Discovertext
 
 ## An example analysis with Twitter data
+
+This is a demo only, using tweets harvested with the Social Feed Manager as csv file. 
+
+``` R
+library(tidyverse)
+library(leaflet)
+
+cdmx <- read_csv("CDMX_tweets.csv") # read in the tweets
+
+cdmx %>% 
+  filter(grepl("\U0001f602", text), # filter for a particular string
+         !is.na(coordinates)) %>%  # remove records without coordinates
+  separate(coordinates, c("lon", "lat"), sep = " ", convert = T) %>%  # turn into lat/lon 
+  leaflet() %>%
+     addTiles() %>%  # Add default OpenStreetMap map tiles
+     addMarkers(~lon, ~lat, popup = ~as.character(text), 
+             label = ~as.character("\U0001F602"), 
+             labelOptions = labelOptions(textsize = "30px"))
+
+```
+
+![Mexico City Tweets](img/cdmx_leaflet.png)
