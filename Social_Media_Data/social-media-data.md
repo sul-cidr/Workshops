@@ -9,8 +9,8 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
 ## Outline
 
 - Fundamental questions and approaches
-- Commonly requested sources
-- An example analysis with Twitter data
+- Commonly requested sources (Facebook, Twitter, etc.)
+- Examples analyses with Twitter data
 
 ## Fundamental questions and approaches
 
@@ -19,7 +19,9 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
   - Licensing
   - Terms of Service
   - What to look for in Licenses or Terms of Service pages
+    - Search for terms like data mining, scrape/scraping, robot, spider, crawl, automated, extract.
   - Ethical concerns regarding privacy
+  - Many social media companies make it incredibly difficult to scrape their content, and code in ways to detect and prevent scraping attempts. When we say, as we will for many companies, don't scrape this company's content, we're indicating the legal and ethical issues, as well as the technical problematics.
 - Using existing data
   - There are social media datasets floating around reddit and other places with different amounts of documentation. You have to make a decision about whether they can be used or not based on your use case and discipline. You should absolutely be thinking about how the data was collected and whether use of that data violates legal restrictions or ethical best practices.
   - There are a lot of repositories out there with documented data as well.
@@ -38,11 +40,11 @@ By the end of this workshop, we hope you'll have a good sense of legal and ethic
 - http://theconversation.com/facebooks-data-lockdown-is-a-disaster-for-academic-researchers-94533
 - https://developers.facebook.com/docs/graph-api/
 
-First, don't try to scrape Facebook. It won't work and it's definitely against the terms of service. Facebook has put a lot of work into anti-scraping mesures in their page code, and the techniques change often enough that it's not worth investing in workarounds for what's currently in place.
+First, don't scrape Facebook. It's unlikely to work and it's definitely against the terms of service.
 
 A lot of people are interested in collecting posts from public Facebook Groups. It used to be possible to use a Facebook API to collect this data. After the Cambridge Analytica scandal, Facebook is almost entirely locked down. While the Graph API is still around, you have to establish a Facebook Developer profile for yourself as a business (complete with official business documentation) that's providing services of some sort to users or other businesses to even access the most basic public information for pages.
 
-Existing data: you can find stray Facebook datasets on reddit, data.world, and other places on the internet. However, given the lack of clarity around how the data were collected and such, it's unlikely these could be used publishable research. You can also find occasional datasets released by people who own the Facebook data, such as cities who are providing information about their communications, though this data is often metadata rather the posts and comments themselves.
+Existing data: you can find stray Facebook datasets on reddit, data.world, and other places on the internet. However, given the lack of clarity around how the data were collected and such, it's unlikely these could be used for publishable research. You can also find occasional datasets released by people who own the Facebook data, such as cities who are providing information about their communications, though this data is often metadata rather the posts and comments themselves.
 
 Collaboration: Facebook periodically puts out RFPs for [research collaborations](https://research.fb.com/programs/). You can sign up for their mailing list to receive the RFPs, but they're focused on technical issues relevant to Facebook's own interests (including things like multilingual NLP, but not sociocultural phenomena).
 
@@ -61,14 +63,14 @@ And, of course, you can't scrape Instagram.
 
 ### Twitter
 
-Use the Twitter API:
+Don't scrape Twitter. Use the Twitter API:
 
 - https://help.twitter.com/en/rules-and-policies/twitter-api
 - https://developer.twitter.com/en/docs
 - https://developer.twitter.com/en/products/products-overview
 - https://developer.twitter.com/en/pricing
 
-https://developer.twitter.com/en/docs/basics/things-every-developer-should-know:
+https://developer.twitter.com/en/docs/basics/things-every-developer-should-know.html
 
 > There are different API families
 
@@ -78,17 +80,20 @@ https://developer.twitter.com/en/docs/basics/things-every-developer-should-know:
 
 > The premium (pay as you go) APIs consist of reliable and affordable versions of enterprise APIs, allowing your business to grow with your usage.
 
-> Additionally, there are some families of APIs (such as the Ads API) which require applications to be whitelisted in order to make use of them.
+With the API, you can build up very large custom sets of tweets for your work, as long as you are following all of the requirements and terms. There is a key limitation for the publication or sharing of that data, though: Twitter's ToS do not allow you to publish collections of entire tweets, but only lists or sets of Tweet IDs. This is what is called "dehydrated" data. You can then "rehydrate" itself by hitting the Twitter API and retrieving that tweet based on the ID. This is in part because Twitter tries to respect when tweets are deleted by users. If a tweet is deleted, the API won't be able to obtain it.
 
-> Twitters ToS do not allow to publish collections of entire tweets, but data can be "hydrated"
+Here's more of their documentation on "being a good partner" in using the Twitter API and collecting tweets: https://developer.twitter.com/en/developer-terms/agreement-and-policy#f-be-a-good-partner-to-twitter
 
-https://developer.twitter.com/en/developer-terms/agreement-and-policy#f-be-a-good-partner-to-twitter
+For an overview that Justin Littman put together on finding existing data: https://gwu-libraries.github.io/sfm-ui/posts/2017-09-14-twitter-data. There are a few changes to recognize. Companies like DiscoverText that have traditionally provided paid access to historical Twitter data are not always able to provide such access anymore in the wake of Twitter becoming more careful with access.
 
-https://gwu-libraries.github.io/sfm-ui/posts/2017-09-14-twitter-data
+There are existing datasets out and about including those linked at these two places:
 
-Existing Twitter datasets: https://www.docnow.io/catalog/
+- https://www.docnow.io/catalog/
+- https://tweetsets.library.gwu.edu/
 
-TweetSets: https://tweetsets.library.gwu.edu/
+You should always check with your library's digital repository or data curator to determine whether your (or other libraries) have datasets.
+
+You can also use Social Feed Manager to manage your own tweet harvesting.
 
 ### Sino Weibo
 
@@ -100,7 +105,7 @@ You can also use Social Feed Manager as a way to manage your API access.
 
 Yelp makes a relatively large dataset available for educational and academic purposes: https://www.yelp.com/dataset
 
-From the Yelp terms of service (https://www.yelp.com/static?p=tos):
+Don't scrape Yelp. From the Yelp terms of service (https://www.yelp.com/static?p=tos):
 
 > You also agree not to, and will not assist, encourage, or enable others to:
 
@@ -129,31 +134,27 @@ And there are existing datasets out there, such as this interesting data on gifs
 - https://www.kaggle.com/datasets
 - https://toolbox.google.com/datasetsearch
 - https://www.data.gov/
-- https://www.docnow.io/catalog/ 
+- https://www.docnow.io/catalog/
 - http://files.pushshift.io
-
-## Industry offerings that might be useful
-
-- Discovertext
 
 ## An example analysis with Twitter data
 
-This is a demo only, using tweets harvested with the Social Feed Manager as csv file. 
+This is a demo only, using tweets harvested with the Social Feed Manager as csv file.
 
-``` R
+```R
 library(tidyverse)
 library(leaflet)
 
 cdmx <- read_csv("CDMX_tweets.csv") # read in the tweets
 
-cdmx %>% 
+cdmx %>%
   filter(grepl("\U0001f602", text), # filter for a particular string
          !is.na(coordinates)) %>%  # remove records without coordinates
-  separate(coordinates, c("lon", "lat"), sep = " ", convert = T) %>%  # turn into lat/lon 
+  separate(coordinates, c("lon", "lat"), sep = " ", convert = T) %>%  # turn into lat/lon
   leaflet() %>%
      addTiles() %>%  # Add default OpenStreetMap map tiles
-     addMarkers(~lon, ~lat, popup = ~as.character(text), 
-             label = ~as.character("\U0001F602"), 
+     addMarkers(~lon, ~lat, popup = ~as.character(text),
+             label = ~as.character("\U0001F602"),
              labelOptions = labelOptions(textsize = "30px"))
 
 ```
