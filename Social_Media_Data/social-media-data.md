@@ -137,7 +137,7 @@ And there are existing datasets out there, such as this interesting data on gifs
 - https://www.docnow.io/catalog/
 - http://files.pushshift.io
 
-## An example analysis with Twitter data
+## An example analysis with Twitter data with R
 
 This is a demo only, using tweets harvested with the Social Feed Manager as csv file.
 
@@ -160,6 +160,122 @@ cdmx %>%
 ```
 
 ![Mexico City Tweets](img/cdmx_leaflet.png)
+
+## An example analysis with Twitter data with Python
+
+This is an example of using text analysis techniques on a set of tweets related to Charlottesville and Christianity, drawn from TweetSets and rehydrated with Twarc.
+
+First, we can just see what the top words are based on raw count across all the tweets.
+
+```Python
+
+import textacy
+import json
+import pandas as pd
+import textacy.vsm
+import textacy.tm
+
+loc = "tweets.jsonl"
+
+data = []
+
+with open(loc, "r") as f:
+    for line in f:
+        data.append(line)
+
+tweets = [json.loads(single)["full_text"] for single in data]
+
+corpus = textacy.Corpus("en", data=tweets)
+
+word_counts = corpus.word_counts(as_strings=True, normalize="lower")
+sorted(word_counts.items(), key=lambda x: x[1], reverse=True)[:20]
+```
+
+```
+[('charlottesville', 1613),
+ ('christian', 1562),
+ ('white', 545),
+ ('christianity', 255),
+ ('response', 224),
+ ('amp', 202),
+ ('trump', 182),
+ ('church', 155),
+ ('racism', 138),
+ ('radical', 133),
+ ('terrorism', 129),
+ ('today', 117),
+ ('hate', 100),
+ ('terrorists', 97),
+ ('american', 93),
+ ('terrorist', 91),
+ ('right', 88),
+ ('latest', 83),
+ ('@realdonaldtrump', 81),
+ ('god', 81)]
+```
+
+Moving more into full text analysis, we could build a topic model of the tweets to understand the themes of the corpus of tweets. Here's a first pass without doing any cleaning of the text whatsoever other than lowercasing.
+
+```Python
+
+vectorizer = textacy.vsm.Vectorizer(
+    tf_type="linear", apply_idf=True, idf_type="smooth", norm="l2",
+    min_df=2, max_df=0.95)
+
+doc_term_matrix = vectorizer.fit_transform(
+    (doc._.to_terms_list(ngrams=1, entities=True, as_strings=True, normalize="lower")
+    for doc in corpus))
+
+model = textacy.tm.TopicModel("lda", n_topics=40)
+model.fit(doc_term_matrix)
+doc_topic_matrix = model.transform(doc_term_matrix)
+for topic_idx, top_terms in model.top_topic_terms(vectorizer.id_to_term, top_n=10):
+    print("topic", topic_idx, ":", "   ".join(top_terms))
+
+```
+
+```
+topic 0 : #charlottesville   🤔   retweeted   weekend   excellent   school   en   son   one   last weekend
+topic 1 : prove   establishment   release   mutually   exclusive   horrific   american   racial   https://t.co/uhqieflxsz   guard
+topic 2 : person   dignity   result   foundation   image   build   forgive   bring   belief   tear
+topic 3 : charlottesville   christian   bible   read   2   great   look   prayer   kind   sick
+topic 4 : especially   offended   unity   @foxnews   #   judge   christian   charlottesville   describe   @judgejeanine
+topic 5 : gop   maga   ccot   tcot   woman   republican   military   student   democrat   2a
+topic 6 : question   mind   think   #   christian   kwilli1046   chance   charlottesville   EU   💯
+topic 7 : exactly   neonazis   finally   sure   identify   home   reality   #   ass   dumb
+topic 8 : thread   right   good   alt   shame   christian   charlottesville   @jerryfalwelljr   community   👇
+topic 9 : find   lot   role   complete   insidious   hat   christian   huge   america   ppl
+topic 10 : fucking   radicalization   piece   idiot   break   @stylewiseblog   concerned   scum   hit   guy
+topic 11 : news   trump   charlottesville   christian   8/14/17   terrorists   lifestyle   #   moron   tiki
+topic 12 : @ctmagazine   statement   catholic   fascist   life   oh   n   ignorant   https://t.co/wdnbdk09pk   murder
+topic 13 : usa   praying4   mondaymotivation   unfortunately   charlottesville   interest   demand   non   ethnic   two
+topic 14 : problem   little   promote   courage   armed   honestly   @sojourners   big   indefensible   angry
+topic 15 : american   christian   charlottesville   terrorist   supremacist   nazi   white   evangelical   neo   trump
+topic 16 : @edstetzer   church   response   christian   charlottesville   literally   african american   african   friend   continue
+topic 17 : start   amen   reaction   oppression   brother   awful   thankful   swear   privilege   good
+topic 18 : leader   university   president   lead   solidarity   attention   christian   question   press   hispanic
+topic 19 : standwithcharlottesville   willingly   23   enabler   die   clergy   🔥   pastor   love   🏻
+topic 20 : blind   capital   quiet   eye   piss   strong   council   racist   political   hear
+topic 21 : jesus   evil   violence   faith   man   christian   charlottesville   want   history   hear
+topic 22 : got   ️   obviously   employ   dog   ✡   christian   week   stand   know
+topic 23 : lay   charlottesville   heal   unitetheright   bad   r   think   want   pastor   @realdonaldtrump
+topic 24 : defendcville   🔥   mention   believe   #   helpful   appropriate   charlottsville   nonewkkk   interesting
+topic 25 : driver   silence   @mike_pence   light   lgbtq   example   glad   strong   anymore   moral
+topic 26 : worth   qualify   count   paper   detestable   brilliant   ironically   authority   sit   christian
+topic 27 : away   ago   name   large   biblical   charlottesville   racism   hatred   think   news
+topic 28 : christianity   god   love   charlottesville   racism   christ   think   christian   represent   need
+topic 29 : response   today   morning   church   tomorrow   christian   charlottesville   ’s   defeat   violent
+topic 30 : know   patriot   inform   patriotic   feel   btw   enemy   disappointed   german   bear
+topic 31 : fear   change   version   judgement   @franklin_graham   profess   twisted   need   pure   reaction
+topic 32 : u   wonder   guy   ur   r   consider   hard   trust   feel   thug
+topic 33 : charlottesville   heatherheyer   christian   terrorists   radical   like   white   @potus   race   trump
+topic 34 : charlottesville   christian   #   white   non   muslim   attack   amp   terrorist   thank
+topic 35 : sad   wonderful   check   hilarious   pun   endabortionnow   practice   reflection   charlottesville   ’s
+topic 36 : white   charlottesville   christian   terrorism   amp   radical   racism   christianity   supremacy   trump
+topic 37 : gain   special   personal   sad day   day   uva   sad   hell   believe   shame
+topic 38 : #   charlottesville   anti   christian   racist   truth   virginia   vigil   week   true
+topic 39 : blacklivesmatter   antifa   liberal   jewish   islam   cnn   republican   conservative   alllivesmater   1/2
+```
 
 ## Resources
 
