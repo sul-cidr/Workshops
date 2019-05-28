@@ -95,9 +95,9 @@ You should always check with your library's digital repository or data curator t
 
 You can also use Social Feed Manager to manage your own tweet harvesting.
 
-### Sino Weibo
+### Sina Weibo
 
-Much like Twitter, Sino Weibo has an API that you can use directly or through different programming libraries or applications to create new datasets.
+Much like Twitter, Sina Weibo has an API that you can use directly or through different programming libraries or applications to create new datasets.
 
 You can also use Social Feed Manager as a way to manage your API access.
 
