@@ -121,7 +121,7 @@ There are also quite a few Reddit corpora floating around the internet. As alway
 
 Following the terms of service, you should also not scrape Tumblr - https://www.tumblr.com/policy/en/terms-of-service (see the "Limitations on Automated Use").
 
-There is an API of limited usefulness. See limitations here - https://www.tumblr.com/docs/en/api_agreement - that include a provision wherein you cannot store Tumble data for more than 3 days.
+There is an API of limited usefulness. See limitations here - https://www.tumblr.com/docs/en/api_agreement - this includes a provision whereby you cannot store Tumble data for more than 3 days.
 
 And there are existing datasets out there, such as this interesting data on gifs with descriptions: https://www.kaggle.com/raingo/tumblr-gif-description-dataset.
 
