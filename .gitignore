@@ -1,2 +1,7 @@
 
 .ipynb_checkpoints
+
+
+# Folder into which sample data is downloaded -- may be created during testing,
+#  but should not be checked-in.
+Data_Manipulation_with_Python/workshop_data/
