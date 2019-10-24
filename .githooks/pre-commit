@@ -5,7 +5,7 @@
 # it wants to stop the commit.
 
 
-find ./ -iname '*.ipynb' -not -path "./.ipynb_checkpoints/*" -print0 |
+find ./ -iname '*.ipynb' -not -path "*.ipynb_checkpoints/*" -print0 |
 	while IFS= read -r -d '' i;
 	do
 		# clear all outputs in Jupyter Notebooks
