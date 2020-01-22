@@ -1,0 +1,1 @@
+This workshop provides an introduction to the Python programming language, covering basic syntax, variables, functions, and control flow. You will learn enough Python to write basic scripts, and to allow you to explore the rich environment of Python packages available. Prior experience with programming in another language is helpful, but not required.
