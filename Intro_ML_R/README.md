@@ -18,4 +18,4 @@ https://www.rstudio.com/products/rstudio/download/
 3. Click "Download ZIP"
 4. Extract these files someplace familiar (Desktop recommended)
 
-> Git users simply type `git clone https://github.com/sul-cidr/Workshops.git`
+> Git users simply open a Terminal and type `git clone https://github.com/sul-cidr/Workshops.git`
