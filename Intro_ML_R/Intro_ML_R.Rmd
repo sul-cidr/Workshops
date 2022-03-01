@@ -578,7 +578,7 @@ cv_sl <- CV.SuperLearner(Y = heart_class$Y,  # heart disease yes/no
                          # For your own research, 5, 10, or 20 are good options
                          cvControl = list(V = 5), 
                          innerCvControl = list(list(V = 5)),
-                         verbose = TRUE, 
+                         verbose = FALSE, 
                          method = "method.NNLS",
                          SL.library = c("SL.rpart",   # decision tree
                                         "SL.ranger",  # random forest
@@ -648,3 +648,6 @@ caret: https://topepo.github.io/caret/
 tidymodels: https://www.tidymodels.org/
 
 mikropml: http://www.schlosslab.org/mikropml/articles/paper.html
+
+# Part 2 - Image classification with Keras in R
+(coming soon)
