@@ -430,7 +430,7 @@ summary(dt_predictions$library.predict)
 qplot(dt_predictions$pred[, 1]) + theme_minimal()
 
 # Compute AUC-ROC and save as variable
-dt_rocr_score = ROCR::prediction(dt_predictions$pred, y_test)
+dt_rocr_score = ROCR::prediction(dt_predictions$pred, heart_class$y_test)
 dt_auc_roc = ROCR::performance(dt_rocr_score, measure = "auc", x.measure = "cutoff")@y.values[[1]]
 
 # AUC-ROC
@@ -482,7 +482,7 @@ summary(rf_predictions$library.predict)
 qplot(rf_predictions$pred[, 1]) + theme_minimal()
 
 # Compute AUC-ROC and save as variable
-rf_rocr_score = ROCR::prediction(rf_predictions$pred, y_test)
+rf_rocr_score = ROCR::prediction(rf_predictions$pred, heart_class$y_test)
 rf_auc_roc = ROCR::performance(rf_rocr_score, measure = "auc", x.measure = "cutoff")@y.values[[1]]
 
 # AUC-ROC 
@@ -549,7 +549,7 @@ summary(la_predictions$library.predict)
 qplot(la_predictions$pred[, 1]) + theme_minimal()
 
 # Compute AUC-ROC and save as variable
-la_rocr_score = ROCR::prediction(la_predictions$pred, y_test)
+la_rocr_score = ROCR::prediction(la_predictions$pred, heart_class$y_test)
 la_auc_roc = ROCR::performance(la_rocr_score, measure = "auc", x.measure = "cutoff")@y.values[[1]]
 
 # AUC-ROC 
