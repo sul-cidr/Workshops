@@ -1,4 +1,0 @@
-library(glmnet)
-?glmnet
-install.packages("ck37r") 
-library(ck37r)
