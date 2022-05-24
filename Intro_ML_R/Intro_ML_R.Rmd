@@ -2,15 +2,29 @@
 title: "CIDR-R-Intro-Machine-Learning"
 author: "Evan Muzzall, SSDS, Stanford Libraries"
 date: "2/24/2022"
-output: html_document
+output:
+  html_document:
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+theme: lumen
 number_sections: false
 ---
 
+# Goal
+
+1. Become familiar with the basic predictive machine learning landscape 
+2. appropriately preprocess the UCI heart disease dataset
+3. fit single model to train/test sets and evaluate performance
+4. deploy a cross-validated ensemble of multiple algorithms for simultaneous comparison
+
 # Introduction: What is machine learning? 
 
-Machine learning is a combination of statistics and computer science that is often defined as an algorithm, computer, or other machine that can learn on its own as it is given more data and without human input. This definition easily becomes conflated with opaque ideas of "artificial intelligence" and is too frequently associated with romanticized technological advancements in transportation, robotics, cognition, and human-computer interaction - although it does apply to these fields. 
+Machine learning is a combination of statistics and computer science that is often defined as an algorithm or computer that can learn on its own as it is given more data and without human input. This definition easily becomes conflated with opaque ideas of "artificial intelligence" and is frequently meant to apply only to research in transportation, robotics, cognition, and human-computer interaction. 
 
-However, we thankfully do not need to think of machine learning in such complicated terms. Instead, it can be thought of as a toolbox for exploring data for application to research problems in virtually all fields of study. We can think of machine learning as a 
+We thankfully do not need to think of machine learning in such complicated terms. Instead, it can be thought of as a toolbox for exploring and modeling data for application to research problems in virtually all fields of study. Is there something you want to predict or infer? Do you want to explore the structure of a dataset? If so, there is a good chance that machine learning might be able to help. 
+
+We can think of machine learning as a 
 
 > "vast set of tools for _understanding data_. These tools can be classified as supervised or unsupervised. Broadly speaking, supervised statistical learning involves building a statistical model for predicting, or estimating, an output based on one or more inputs... With unsupervised statistical learning, there are inputs but no supervising output; nevertheless we can learn relationships and structure from such data." 
 > (James et al. 2021, p. 1). 
@@ -19,17 +33,19 @@ However, we thankfully do not need to think of machine learning in such complica
 
 ## Machine learning terminology
 
-Machine learning tasks are generally defined as belonging to one of a small handful of groups: supervised, unsupervised, deep, semi-supervised, reinforcement, and targeted/causal. 
+You neither need to understand the mathematics behind machine learning nor get lost in romanticized notions of "AI" to responsibly apply it to your research problem. However, you should be familiar with basic vocabulary terms and jargons to understand how the different parts work together and explain its application to your research. 
 
-Our focus in this workshop is on supervised learning for classification using the [SuperLearner R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) and we will follow the [Guide to SuperLearner](https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html). 
+Machine learning tasks are generally defined as belonging to one of a small handful of groups: supervised, unsupervised, semi-supervised, deep, reinforcement, and targeted/causal. 
+
+Our focus in this workshop is on **supervised learning** for a **classification task** using the [SuperLearner R package](https://cran.r-project.org/web/packages/SuperLearner/index.html). We will follow the [Guide to SuperLearner](https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html). 
 
 1. **Supervised learning:** is a predictive technique that trains a model on known, labeled data. The goal is to understand the relationships between variables in a dataset so that the trained model can be used to make predictions on new data it has not yet seen and whose labels are unknown. Or, 
 
 > "We wish to fit a model that relates the response to the predictors, with the aim of accurately predicting the response for future observations (prediction) or better understanding the relationship between the response and the predictors (inference)." (James et al. 2021, p. 26)
 
-- __Classification:__ is the supervised task when the Y variable is discrete/categorical.
+- __Classification:__ is the supervised task when the Y variable is discrete/categorical ($Pr(y=1|x)$). For binary classification, 1 is the "yes", or positive class. 0 is the "no", or negative class. This can also extend to multiclass problems as well. 
   
-- __Regression:__ is the supervised task when the Y variable is continuous (i.e., numeric or integer). 
+- __Regression:__ is the supervised task when the Y variable is continuous (i.e., numeric or integer) ($E(y|x)$) 
 
 2. **Supervised syntax**
 
@@ -43,12 +59,23 @@ Simply put, we want to use the X variables to predict Y.
 
 - __Y__ is the dependent variable and the one we want to predict. It is also referred to as the outcome, target, or response variable. Although predicting the label itself might be convenient, predicting the class probabilities is more efficient. 
 
-4. **Data splitting:** Predictions are usually evaluated twice: 1) first on the training set to see how well the model can learn the relationships between the **X** and **Y** variables, and then 2) on the test set to see how well the trained model can generalize to predicting on new data. To accomplish this task, a given dataset is divided into training and test sets. 
+- A machine learning function might look like this: 
 
-> NOTE: a validation set is also sometimes used for hyperparameter tuning/model selection on the training dataset. 
+$y=f(x)+ϵ$
+
+where f is the function to estimate the relationships between __X__ to __Y__. The random error epsilon ϵ is independent of x and averages to zero. We can therefore use $^y=^f(x)$ to predict __Y__ for new data (the test dataset) and evaluate how well the algorithm learned the target function when trained and then introduced to the new data. 
+
+4. **Data splitting:** Predictions are usually evaluated twice: 
+
+1. first on the labeled training set to see how well the model can learn the relationships between the __X__ and __Y__ variables, and then 
+2. on the test set to see how well the trained model can generalize to predicting on new data. 
+
+To accomplish this task, a given dataset is divided into training and test sets. 
+
+> NOTE: a validation set is also sometimes used for hyperparameter tuning/model selection on the training dataset and are to be learned. While the parameters represent the internal configuration of the model, hyperparameters are defined by the user before training begins. 
 
 - The **training set:** generally consists of the majority portion of the original dataset (70%, for example) where the model can learn the relationships between the **X** and **Y** variables. 
-  - __Hyperparameters:__ are the configurations manually set by the programmer prior to model training through heuristics and trial and error. We do not know the optimal combinations of these options, and must tune the hyperparameters through the model training process to optimize prediction performance. 
+  - __Hyperparameters:__ are the configurations manually set by the programmer prior to model training through heuristics and trial and error, or a grid search. We do not know the optimal combinations of these options, and must tune the hyperparameters through the model training process to optimize prediction performance. 
 
 - The **test set:** consists of the remaining portion of the dataset (30% in this example) that the trained model will then try to predict without seeing the Y labels. 
 
@@ -58,11 +85,15 @@ Simply put, we want to use the X variables to predict Y.
 
 5. **Performance metrics:** It is necessary to evaluate model performance on the training and test sets (and validation set, when applicable) through a variety of [confusion matrix derivations](https://en.wikipedia.org/wiki/Confusion_matrix). 
 
+
+
 We will focus on two classification metrics in this workshop: 
 1. Risk - as measured by [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error)
 2. [AUC-ROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve) - area under the curve - receiver operator characteristic; a measure of true positive rate versus true negative rate
 
 ![https://en.wikipedia.org/wiki/Confusion_matrix](img/cmwiki.png)
+
+> Keep in mind that misclassification error is often an inappropriate performance metric, particularly when dealing with a __Y__ variable whose distribution is imbalanced. 
 
 - A model is **underfit** if it cannot learn the relationships between the **X** and **Y** variables on the training set. 
 
@@ -71,38 +102,38 @@ We will focus on two classification metrics in this workshop:
 ## Example machine learning workflow
 
 1. Read literature in your field to understand what has been done; annotate what you read
-2. Formulate a research question(s)
+2. Formulate research question(s)
 3. Obtain data
 4. Preprocess data
 - scale variables when necessary
-- handle missing values if present (listwise delete, median impute, generalized low rank model impute, etc.)
-- convert factor variables to numeric indicators if present
+- handle missing values if present (listwise delete, median impute, multiple impute, generalized low rank model impute, etc.)
+- if present, convert factor variables to numeric indicators
 5. Define x and y variables
 6. Split data into train and test sets
 7. Train and evaluate performance of a single algorithm on as a prototype
 8. Examine the trained model's performance on the test set
 9. Create and deploy a cross-validated ensemble
 
+> NOTE: with practice, you might find you prefer to perform the cross-validated ensemble step first, followed by a single train/test split. 
+
 # Today's topic: Predicting heart disease
 
 ![https://theheartfoundation.org/heart-disease-facts-2/](img/heart.png)
-We investigate how well individual algorithms and a SuperLearner ensemble weighted average can predict heart disease (yes/no) using other health indicators as features/predictors. Learn more about the dataset at the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/heart+disease)
+We investigate how well individual algorithms and a SuperLearner ensemble weighted average can predict heart disease (yes/no) using other health indicators as predictors, called features. Learn more about the dataset at the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/heart+disease)
 
 # SuperLearner
 
 > SuperLearner is an algorithm that uses cross-validation to estimate the performance of multiple machine learning models, or the same model with different settings. It then creates an optimal weighted average of those models, aka an "ensemble", using the test data performance. This approach has been proven to be asymptotically as accurate as the best possible prediction algorithm that is tested. [Guide to SuperLearner - 1 Background](https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html)
 
-In this manner, a SuperLearner ensemble is a powerful tool because it:
+In this manner, an ensemble is a powerful tool because it:
 
 1. Eliminates bias of single algorithm selection for framing a research problem
 
-2. Allows for comparison of multiple algorithms, and/or comparison of the same model but tuned in many different ways
+2. Allows for comparison of multiple algorithms, and/or comparison of the same model(s) but tuned in many different ways
 
 3. Utilizes a second-level algorithm that produces an ideal weighted prediction that is suitable for data of virtually all distributions and uses external cross-validation to prevent overfitting. 
 
 **Read the papers:**
-
-- [Kennedy C. 2017. Guide to SuperLearner](https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html)
 
 - [Van der Laan, M.J.; Polley, E.C.; Hubbard, A.E. Super Learner. Stat. Appl. Genet. Mol. Biol. 2007, 6, 1–21.](https://www.degruyter.com/document/doi/10.2202/1544-6115.1309/html)
 
@@ -112,17 +143,15 @@ In this manner, a SuperLearner ensemble is a powerful tool because it:
 
 ## Package installation
 
-Install and library the packages we will use in this workshop. The `pacman` package management tool handles everything for you in the code chunk below. 
-
-You should consider using it (or something like it) for your own research. [Read the documentation here](https://www.rdocumentation.org/packages/pacman/versions/0.5.1).
+Install and library the packages we will use in this workshop. The `pacman` package management tool handles everything for you in the code chunk below. You should consider using it (or something like it) for your own research. [Read the documentation here](https://www.rdocumentation.org/packages/pacman/versions/0.5.1).
 
 ```{r}
 if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load("caret",         # create stratified random split of the dataset
                "ck37r",         # Chris Kennedy's Machine Learning Helper Toolkit
-               "ggplot2",       # visualize risk and ROC
-               "glmnet",        # the elastic net algorithm
+               "ggplot2",       # visualize risk and ROC curve
+               "glmnet",        # elastic net algorithm
                "ranger",        # random forest algorithm
                "rpart",         # decision tree algorithm
                "scales",        # for scaling data
@@ -133,7 +162,9 @@ pacman::p_load("caret",         # create stratified random split of the dataset
 
 ### The ck37r package
 
-If the CRAN installation for the ck37r package does not work correctly, install it from GitHub by unhashtagging the three lines of code below. 
+If the CRAN installation for the ck37r package does not work correctly, install it from GitHub by unhashtagging and running the three lines of code below. 
+
+> If prompted to update packages, select "All" by entering a number 1 in your console and press the Enter key. 
 
 ```{r}
 # install.packages("remotes")
@@ -170,7 +201,7 @@ str(raw)
 
 ## 2. Convert categorical variables
 
-The variables cp, restecg, slope, ca, and thal are variables to be converted to nominal categorical type. Perhaps ordinal factors could be even more appropriate.
+The variables cp, restecg, slope, ca, and thal are variables to be converted to nominal categorical type. 
 
 Save this factorized version in a variable named `raw_fac`. 
 
@@ -182,7 +213,7 @@ str(raw_fac)
 
 ## 3. Convert factors to numeric indicators
 
-Most machine learning algorithms require that input and output variables are numeric and therefore do not handle factor data well (although with some exceptions). 
+Most machine learning algorithms require that input variables are numeric and therefore do not handle factor data well (although with some exceptions, such as decision trees). 
 
 Therefore, we want to convert the factor variables to numeric indicator variables (aka one-hot/dummy coding). [See a few examples here](https://datatricks.co.uk/one-hot-encoding-in-r-three-simple-methods).
 
@@ -204,7 +235,6 @@ Identify and remove the variables age, trestbps, chol, thalach, and oldpeak to b
 
 ```{r}
 # First, investigate the data to identify variables to scale
-names(raw_df)
 summary(raw_df)
 summary(raw_df[,c("age", "trestbps", "chol", "thalach", "oldpeak")])
 
@@ -247,21 +277,30 @@ clean <- cbind(removed,       # cleaned data without the scaled variables
 str(clean)
 ```
 
-### Save the `clean` dataset
+## 7. Save the `clean` dataset
 
 Save the clean dataset so you do not have to repeat these preprocessing steps.
 
 ```{r}
 save(clean,                                  # variable(s) to be saved
-     file = "data/preprocessed/clean.RData") # file name
-
-# You can always load the clean dataset with
-load("data/preprocessed/clean.RData")
+     file = "data/preprocessed/clean.RData") # file location and name
 ```
 
-# Stay organized
+# Wipe your global environment clean
 
-One handy way to keep your machine learning organized is by storing all the components in a list. Let's call our list `heart_class`, for our task of heart disease classification.
+Reload the clean dataset with:
+
+```{r}
+load("data/preprocessed/clean.RData")
+str(clean)
+```
+
+> Separate scripts
+> All steps up to this point could have easily occurred in a separate script. Good scripting practices - and efficient project management - are encouraged for any machine learning project. Contact SSDS if you want to learn more. 
+
+# Machine learnign in practice: How to stay organized
+
+One handy way to keep your machine learning organized is by storing all the components in a list. Let's call our list `heart_class`, for our task of heart disease classification as being either present or absent. 
 
 Our first two list components will be the dataset and outcome variable. In the heart dataset, the `target` variable is coded with a 1 if the patient had heart disease and a 0 if they did not.
 
@@ -282,6 +321,7 @@ heart_class$outcome
 ## Add covariates
 
 ```{r}
+# setdiff is a handy base R function to define the covariates as all variables *except* the outcome
 heart_class$covariates <- setdiff(names(heart_class$data), heart_class$outcome)
 
 # The covariate names appear in the heart_class list!
@@ -294,12 +334,14 @@ heart_class$covariates
 ## Add training rows
 
 ```{r}
+# ?createDataPartition
 set.seed(1) 
 training_rows <- 
   caret::createDataPartition(heart_class$data[[heart_class$outcome]], 
                              p = 0.70, 
                              list = FALSE)
 
+# assign the row indices
 heart_class$train_rows <- training_rows
 
 # We have added the training rows to our list
@@ -310,9 +352,12 @@ head(heart_class$train_rows)
 ## Split data into training and test sets
 
 ```{r}
+# use the train_rows indices to add the correct covariates and outcome to the training set
 x_train <- heart_class$data[heart_class$train_rows, heart_class$covariates]
 y_train <- heart_class$data[heart_class$train_rows, heart_class$outcome]
 
+# note the use of the minus sign here
+# this says to use the train_rows indices *not* assigned to the training set in the test set
 x_test <- heart_class$data[-heart_class$train_rows, heart_class$covariates]
 y_test <- heart_class$data[-heart_class$train_rows, heart_class$outcome]
 
@@ -334,7 +379,7 @@ names(heart_class)
 # For example,
 heart_class$y_train
 
-# Also save X and Y for the ensemble
+# Also save X and Y for the ensemble, since we will use all of the data in the cross-validation process
 heart_class$Y <- clean$target
 heart_class$X <- clean[,-4] 
 ```
@@ -346,24 +391,23 @@ This way, you do not have to repeat all of these steps. You can just `load("data
 ```{r}
 names(heart_class)
 
-save(heart_class,
+save(clean, heart_class, # save the clean dataset as well
      file = "data/preprocessed/heart_class.RData")
+```
 
-# Load it with the load() function
+# Again, wipe your global environment clean
+
+```{r}
+# Then, load heart_class with the load function!
 load("data/preprocessed/heart_class.RData")
+names(heart_class)
+# or
+str(heart_class)
 ```
 
 # Fit single models
 
-It is often good to fit a single model to prototype your machine learning goals. 
-
-Let's fit three! Click the links for more information.
-
-1. [Single decision tree](https://www.amazon.com/Classification-Regression-Wadsworth-Statistics-Probability/dp/0412048418)
-
-2. [Random forest](https://link.springer.com/article/10.1023/A:1010933404324)
-
-3. [Lasso](https://cran.r-project.org/web/packages/glmnet/vignettes/glmnet.pdf)
+It can be good to fit a single model to prototype your machine learning task. 
 
 ## View available models
 
@@ -373,15 +417,21 @@ SuperLearner supports a wide variety of useful algorithms:
 listWrappers()
 ```
 
+Let's fit three, one at a time. Click the links for more information.
+
+1. [Single decision tree](https://www.amazon.com/Classification-Regression-Wadsworth-Statistics-Probability/dp/0412048418)
+
+2. [Random forest](https://link.springer.com/article/10.1023/A:1010933404324)
+
+3. [Lasso](https://cran.r-project.org/web/packages/glmnet/vignettes/glmnet.pdf)
+
 ## Decision tree
 
-A decision tree is an algorithm is useful because they are relatively simple to construct and interpret. They can work with categorical data directly, without the need for one-hot encoding. 
+The decision tree algorithm can be useful because it is relatively simple to construct and interpret. They can work with categorical data directly, without the need for one-hot encoding. 
 
-Decision trees work by recursively partitioning, or partitioning, the feature space into smaller regions that contain less data. Splitting takes place at **nodes** and each directional split is called a **branch**. The top node is called the **root node** and seeks to find the most discriminating split, thus always putting the most optimal partition first. 
+Decision trees work by recursively partitioning, or dividing the feature space into smaller regions that contain less data. Splitting takes place at **nodes** and each directional split is called a **branch**. The top node is called the **root node** and seeks to find the most discriminating split, thus always putting the most optimal partition first. The tree stops partitioning when it fails to meet some hyperparameter condition. See `?rpart.control` for a list of tunings. 
 
-Keep in mind that single decision trees are prone to overfitting and high variance.
-
-The tree stops partitioning when it fails to meet some hyperparameter condition. See `?rpart.control` for a list of tunings. 
+Keep in mind that single decision trees are prone to overfitting and high variance in results on different training data.
 
 Unhashtag the below code to reproduce the tree figure for the training data.
 
@@ -392,11 +442,12 @@ Unhashtag the below code to reproduce the tree figure for the training data.
 - [Read this stackoverflow thread about decision tree information gain.](https://stackoverflow.com/questions/4553947/decision-tree-on-information-gain)
 
 ```{r eval = F}
+?rpart
 ?rpart.control
 # install.packages("rpart.plot")
 # library(rpart.plot)
-# (dt_example_plot <- rpart(y_train ~ ., 
-#                           data = x_train, 
+# (dt_example_plot <- rpart(heart_class$y_train ~ .,
+#                           data = heart_class$x_train,
 #                           method = "class",
 #                           parms = list(split = "information")))
 # rpart.plot(dt_example_plot)
@@ -439,11 +490,11 @@ dt_auc_roc
 
 ## Random forest
 
-The random forest algorithm is a big step up from a single decision tree. 
+The random forest algorithm is a big step up from a single decision tree, and is in itself an ensemble method. 
 
 It is a **forest** because it grows multiple decision trees. 
 
-It is **random** because it bootstrap samples (with replacement) two-thirds of the dataset for each tree (this is called bootstrap aggregating, or "bagging") and evaluates performance on the remaining one-third of the data (called the "out-of-bag" sample). 
+It is **random** because it bootstrap samples (with replacement) two-thirds of the dataset for each tree (this is called bootstrap aggregating, or "bagging") and evaluates performance on the remaining one-third of the data (called the "out-of-bag" sample). Performance is averaged across the trees. 
 
 It is also **random** because instead of trying to place the most discriminating split as the root node, it selects a random sample of features to try at each split. This allows for good splits to be followed by bad splits, and for bad splits to be followed by good splits thus helping decorrelate the average performance estimator for a more robust conclusion. 
 
@@ -502,7 +553,6 @@ View the help files with `?glmnet` and `?cv.glmnet` to learn more.
 ?cv.glmnet
 ```
 
-
 - [Remember to read An Introduction to glmnet](https://cran.r-project.org/web/packages/glmnet/vignettes/glmnet.pdf)
 
 ```{r}
@@ -523,8 +573,7 @@ plot(lasso$glmnet.fit, xvar = "lambda", label = TRUE)
 (coef_min = coef(lasso, s = "lambda.1se"))
 ```
 
-
-### Lasso - train the model
+### Lasso - train the model with SuperLearner
 
 ```{r}
 set.seed(1)
@@ -534,7 +583,7 @@ la <- SuperLearner(Y = heart_class$y_train,
                    SL.library = "SL.glmnet")
 la
 
-# 0.86 accuracy
+# Accuracy
 (la_risk <- 1-la$cvRisk)
 ```
 
@@ -558,7 +607,7 @@ la_auc_roc
 
 # Ensemble
 
-Now, lets fit an ensemble with two more algorithms include:
+We have now tried three algorithms: the decision tree performed relatively poorly compared to the random forest and lasso. So, how do we know which algorithm to choose? Let's fit an ensemble with two more algorithms:
 
 4. [xgboost](https://www.google.com/search?client=firefox-b-1-d&q=short+introduction+to+boosting+freund)
 
@@ -572,6 +621,7 @@ Now, lets fit an ensemble with two more algorithms include:
 
 ```{r}
 set.seed(1)
+system.time({
 cv_sl <- CV.SuperLearner(Y = heart_class$Y,  # heart disease yes/no
                          X = heart_class$X,  # excluding the "target" variable
                          family = binomial(),
@@ -585,12 +635,13 @@ cv_sl <- CV.SuperLearner(Y = heart_class$Y,  # heart disease yes/no
                                         "SL.glmnet",  # lasso
                                         "SL.xgboost", # boosted trees
                                         "SL.mean"))   # Y mean
+})
 ```
 
 ## Explore the output
 
 ```{r}
-# Learn more about what is contained within the model
+# View the function call
 cv_sl
 
 # View the risk table
@@ -614,7 +665,7 @@ cvsl_weights(cv_sl)
 # Compute ensemble AUC-ROC 
 ck37r::cvsl_auc(cv_sl)
 
-# Plot ROC curve
+# Plot AUC-ROC curve
 ck37r::plot_roc(cv_sl)
 
 # View rough estimates of variable importance
@@ -631,15 +682,20 @@ var_importance
 
 ## Customize model hyperparameters and refit the ensemble
 
-Read Chapter 9 and Chapter 10 in the Guide to SuperLearner to learn to customize model hyperparameters and test algorithms with multiple hyperparameter settings. 
-
-Refit the ensemble with a few new, tuned algorithms compared to the existing algorithms contained within the `SL.library` parameter inside of `CV.SuperLearner` above ("SL.rpart", "SL.ranger", "SL.glmnet",  "SL.xgboost", "SL.mean"). 
+Read Chapter 9 and Chapter 10 in the Guide to SuperLearner to learn to customize model hyperparameters and test these same algorithms with multiple hyperparameter settings. Refit the ensemble with a few new, tuned algorithms compared to the existing algorithms contained within the `SL.library` parameter inside of `CV.SuperLearner` above ("SL.rpart", "SL.ranger", "SL.glmnet",  "SL.xgboost", "SL.mean"). 
 
 What changed, and how were you able to optimize performance? 
 
 How did you find out which hyperparameters to tune?
 
 > HINT: type `?rpart`, `?ranger`, etc.
+
+Also, consider the below points to boost performance: 
+- Change nominal factors to ordinal type when appropriate  
+- Explore other ways to scale numeric variables  
+- Include other algorithms  
+- Utilize other/more performance metrics  
+- [Read more](https://machinelearningmastery.com/machine-learning-performance-improvement-cheat-sheet/)
 
 # Other tutorials
 
