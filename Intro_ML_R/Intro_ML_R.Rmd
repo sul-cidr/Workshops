@@ -85,8 +85,6 @@ To accomplish this task, a given dataset is divided into training and test sets.
 
 5. **Performance metrics:** It is necessary to evaluate model performance on the training and test sets (and validation set, when applicable) through a variety of [confusion matrix derivations](https://en.wikipedia.org/wiki/Confusion_matrix). 
 
-
-
 We will focus on two classification metrics in this workshop: 
 1. Risk - as measured by [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error)
 2. [AUC-ROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve) - area under the curve - receiver operator characteristic; a measure of true positive rate versus true negative rate
