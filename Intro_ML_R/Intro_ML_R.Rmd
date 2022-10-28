@@ -302,6 +302,20 @@ One handy way to keep your machine learning organized is by storing the various 
 
 Our first two list components will be the dataset and outcome variable. In the heart dataset, the `target` variable is coded with a 1 if the patient had heart disease and a 0 if they did not.
 
+The list will look like the screenshot below and will contain: 
+1. The dataset  
+2. Outcome column name  
+3. Covariates  
+4. Training set row indices  
+5. Training set X covariates  
+6. Training set Y outcome vector  
+7. Test set X covariates  
+8. Test set Y outcome vector  
+9. Y outcomes for the entire dataset (for cross-validation)
+10. X covariates for the entire dataset (for cross-validation)
+
+![heart_class](img/heart_class.png)
+
 ```{r}
 heart_class <- list(
   data = clean, 
