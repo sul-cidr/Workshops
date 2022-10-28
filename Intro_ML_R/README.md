@@ -3,8 +3,8 @@
 This workshop provides a gentle introduction to machine learning vocabulary and concepts. You will learn the basics for ensemble machine learning practices using various R packages.
 
 
-**Part 2 - image classification coming soon!**
-Contact muzzall {at} stanford {dot} edu if you want to start classifying images in R.
+**Do you want to get started with unsupervised methods and/or deep learning?**
+[Contact SSDS to schedule a consulting appointment](https://library.stanford.edu/research/software-and-services-data-science/schedule-consulting-appointment-contact-us)
 
 ## Download R
 https://cloud.r-project.org/
