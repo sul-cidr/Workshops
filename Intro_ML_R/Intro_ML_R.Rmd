@@ -14,9 +14,9 @@ number_sections: false
 # Goal
 
 1. Become familiar with the basic predictive machine learning landscape 
-2. appropriately preprocess the UCI heart disease dataset
-3. fit single model to train/test sets and evaluate performance
-4. deploy a cross-validated ensemble of multiple algorithms for simultaneous comparison
+2. Appropriately preprocess the UCI heart disease dataset (the most time-consuming part of this workshop!)
+3. Fit single model to train/test sets and evaluate performance
+4. Deploy a cross-validated ensemble of multiple algorithms for simultaneous comparison
 
 # Introduction: What is machine learning? 
 
@@ -31,17 +31,17 @@ We can think of machine learning as a
 
 [James G, Witten D, Hastie T, Tibshirani R. 2021. An Introduction to Statistical Learning: With Applications in R, 2nd edition.](https://www.statlearning.com)
 
+>NOTE: there are other approaches as well, such as: semi-supervised, deep, reinforcement, and targeted/causal. 
+
 ## Machine learning terminology
 
-You neither need to understand the mathematics behind machine learning nor get lost in romanticized notions of "AI" to responsibly apply it to your research problem. However, you should be familiar with basic vocabulary terms and jargons to understand how the different parts work together and explain its application to your research. 
-
-Machine learning tasks are generally defined as belonging to one of a small handful of groups: supervised, unsupervised, semi-supervised, deep, reinforcement, and targeted/causal. 
+The good news is that you neither need to be a mathematician nor get lost in romanticized notions of "AI" to responsibly apply it to your research problem. However, you should be familiar with basic vocabulary terms to understand how the different parts work independently and together. 
 
 Our focus in this workshop is on **supervised learning** for a **classification task** using the [SuperLearner R package](https://cran.r-project.org/web/packages/SuperLearner/index.html). We will follow the [Guide to SuperLearner](https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html). 
 
-1. **Supervised learning:** is a predictive technique that trains a model on known, labeled data. The goal is to understand the relationships between variables in a dataset so that the trained model can be used to make predictions on new data it has not yet seen and whose labels are unknown. Or, 
+1. **Supervised learning:** is a predictive technique that trains a model on known, labeled data. The goal is to understand the relationships between variables in a dataset so that the trained model can be used to make predictions on new data it has not yet seen and whose labels are unknown. Or, as James et al. (2021, p. 26) state:
 
-> "We wish to fit a model that relates the response to the predictors, with the aim of accurately predicting the response for future observations (prediction) or better understanding the relationship between the response and the predictors (inference)." (James et al. 2021, p. 26)
+> "We wish to fit a model that relates the response to the predictors, with the aim of accurately predicting the response for future observations (prediction) or better understanding the relationship between the response and the predictors (inference)." 
 
 - __Classification:__ is the supervised task when the Y variable is discrete/categorical ($Pr(y=1|x)$). For binary classification, 1 is the "yes", or positive class. 0 is the "no", or negative class. This can also extend to multiclass problems as well. 
   
@@ -72,12 +72,12 @@ where f is the function to estimate the relationships between __X__ to __Y__. Th
 
 To accomplish this task, a given dataset is divided into training and test sets. 
 
-> NOTE: a validation set is also sometimes used for hyperparameter tuning/model selection on the training dataset and are to be learned. While the parameters represent the internal configuration of the model, hyperparameters are defined by the user before training begins. 
-
 - The **training set:** generally consists of the majority portion of the original dataset (70%, for example) where the model can learn the relationships between the **X** and **Y** variables. 
   - __Hyperparameters:__ are the configurations manually set by the programmer prior to model training through heuristics and trial and error, or a grid search. We do not know the optimal combinations of these options, and must tune the hyperparameters through the model training process to optimize prediction performance. 
 
 - The **test set:** consists of the remaining portion of the dataset (30% in this example) that the trained model will then try to predict without seeing the Y labels. 
+
+> NOTE: a validation set is also sometimes used for hyperparameter tuning/model selection on the training dataset and are to be learned. While the parameters represent the internal configuration of the model, hyperparameters are defined by the user before training begins. 
 
 - **[k-fold cross-validation:](https://en.wikipedia.org/wiki/Cross-validation_(statistics))** is a preferred method for approaching the data splitting process because it repeats the train/test split process "k" number of times and rotates portions of the dataset to ensure that each observation is in the test set at least once. 
 
@@ -114,12 +114,12 @@ We will focus on two classification metrics in this workshop:
 8. Examine the trained model's performance on the test set
 9. Create and deploy a cross-validated ensemble
 
-> NOTE: with practice, you might find you prefer to perform the cross-validated ensemble step first, followed by a single train/test split. 
+> NOTE: You might also prefer to perform the cross-validated ensemble step first, followed by a single train/test split. 
 
 # Today's topic: Predicting heart disease
 
 ![https://theheartfoundation.org/heart-disease-facts-2/](img/heart.png)
-We investigate how well individual algorithms and a SuperLearner ensemble weighted average can predict heart disease (yes/no) using other health indicators as predictors, called features. Learn more about the dataset at the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/heart+disease)
+We investigate how well individual algorithms and a SuperLearner ensemble weighted average can predict heart disease (yes/no) using other health indicators as predictors called features. Learn more about the dataset at the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/heart+disease)
 
 # SuperLearner
 
@@ -298,16 +298,16 @@ str(clean)
 > Separate scripts
 > All steps up to this point could have easily occurred in a separate script. Good scripting practices - and efficient project management - are encouraged for any machine learning project. Contact SSDS if you want to learn more. 
 
-# Machine learnign in practice: How to stay organized
+# Machine learning in practice: How to stay organized
 
-One handy way to keep your machine learning organized is by storing all the components in a list. Let's call our list `heart_class`, for our task of heart disease classification as being either present or absent. 
+One handy way to keep your machine learning organized is by storing the various components in a list. Let's call our list `heart_class`, for our task of yes/no heart disease classification. 
 
 Our first two list components will be the dataset and outcome variable. In the heart dataset, the `target` variable is coded with a 1 if the patient had heart disease and a 0 if they did not.
 
 ```{r}
 heart_class <- list(
   data = clean, 
-  outcome = "target"
+  outcome = "target" # Y variable column name
 )
 
 # View the list contents
@@ -374,19 +374,16 @@ heart_class$x_train <- x_train
 heart_class$y_train <- y_train
 heart_class$x_test <- x_test
 heart_class$y_test <- y_test
-names(heart_class)
-
-# For example,
-heart_class$y_train
 
 # Also save X and Y for the ensemble, since we will use all of the data in the cross-validation process
 heart_class$Y <- clean$target
 heart_class$X <- clean[,-4] 
+names(heart_class)
 ```
 
 ### Save the list `heart_class`
 
-This way, you do not have to repeat all of these steps. You can just `load("data/preprocessed/heart_class.RData")`
+This way, you do not have to repeat all of these steps. You can just `load("data/preprocessed/heart_class.RData")`to load the data along with our preprocessed list!
 
 ```{r}
 names(heart_class)
@@ -401,8 +398,12 @@ save(clean, heart_class, # save the clean dataset as well
 # Then, load heart_class with the load function!
 load("data/preprocessed/heart_class.RData")
 names(heart_class)
+
 # or
-str(heart_class)
+# View(heart_class)
+
+# or
+# str(heart_class)
 ```
 
 # Fit single models
@@ -469,7 +470,7 @@ dt
 (dt_acc <- 1 - dt$cvRisk)
 ```
 
-### Test set AUC-ROC: 
+### Compute decision tree test set AUC-ROC: 
 
 ```{r}
 # Predict on test set
@@ -555,24 +556,6 @@ View the help files with `?glmnet` and `?cv.glmnet` to learn more.
 
 - [Remember to read An Introduction to glmnet](https://cran.r-project.org/web/packages/glmnet/vignettes/glmnet.pdf)
 
-```{r}
-set.seed(1)
-lasso <- cv.glmnet(x = as.matrix(heart_class$X), 
-                   y = heart_class$Y, 
-                   family = "binomial", 
-                   alpha = 1)
-lasso
-
-# View path plot
-plot(lasso)
-
-# View coefficients
-plot(lasso$glmnet.fit, xvar = "lambda", label = TRUE)
-
-# Show coefficients for 1se model
-(coef_min = coef(lasso, s = "lambda.1se"))
-```
-
 ### Lasso - train the model with SuperLearner
 
 ```{r}
@@ -603,6 +586,26 @@ la_auc_roc = ROCR::performance(la_rocr_score, measure = "auc", x.measure = "cuto
 
 # AUC-ROC 
 la_auc_roc
+```
+
+### Bonus: cross-validated lasso with `cv.glmnet`
+
+```{r}
+set.seed(1)
+lasso <- cv.glmnet(x = as.matrix(heart_class$X), 
+                   y = heart_class$Y, 
+                   family = "binomial", 
+                   alpha = 1)
+lasso
+
+# View path plot
+plot(lasso)
+
+# View coefficients
+plot(lasso$glmnet.fit, xvar = "lambda", label = TRUE)
+
+# Show coefficients for 1se model
+(coef_min = coef(lasso, s = "lambda.1se"))
 ```
 
 # Ensemble
@@ -644,7 +647,10 @@ cv_sl <- CV.SuperLearner(Y = heart_class$Y,  # heart disease yes/no
 # View the function call
 cv_sl
 
-# View the risk table
+# View the risk table for: 
+# 1. The individual algorithms
+# 2. The discrete winner
+# 3. The SuperLearner ensemble
 summary(cv_sl)
 
 # View the discrete winner
@@ -682,7 +688,7 @@ var_importance
 
 ## Customize model hyperparameters and refit the ensemble
 
-Read Chapter 9 and Chapter 10 in the Guide to SuperLearner to learn to customize model hyperparameters and test these same algorithms with multiple hyperparameter settings. Refit the ensemble with a few new, tuned algorithms compared to the existing algorithms contained within the `SL.library` parameter inside of `CV.SuperLearner` above ("SL.rpart", "SL.ranger", "SL.glmnet",  "SL.xgboost", "SL.mean"). 
+Read Chapter 9 and Chapter 10 in the [Guide to SuperLearner](https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html) to learn to customize model hyperparameters and test these same algorithms with multiple hyperparameter settings. Refit the ensemble with a few new, tuned algorithms compared to the existing algorithms contained within the `SL.library` parameter inside of `CV.SuperLearner` above ("SL.rpart", "SL.ranger", "SL.glmnet",  "SL.xgboost", "SL.mean"). 
 
 What changed, and how were you able to optimize performance? 
 
@@ -704,6 +710,3 @@ caret: https://topepo.github.io/caret/
 tidymodels: https://www.tidymodels.org/
 
 mikropml: http://www.schlosslab.org/mikropml/articles/paper.html
-
-# Part 2 - Image classification with Keras in R
-(coming soon)
