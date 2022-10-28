@@ -311,7 +311,7 @@ The list will look like the screenshot below and will contain:
 6. Training set Y outcome vector  
 7. Test set X covariates  
 8. Test set Y outcome vector  
-9. Y outcomes for the entire dataset (for cross-validation)
+9. Y outcomes for the entire dataset (for cross-validation)  
 10. X covariates for the entire dataset (for cross-validation)
 
 ![heart_class](img/heart_class.png)
