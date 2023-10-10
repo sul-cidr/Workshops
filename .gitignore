@@ -1,5 +1,6 @@
 .DS_Store
 .ipynb_checkpoints
+.jupyter
 
 
 # Folder into which sample data is downloaded -- may be created during testing,
